@@ -11,15 +11,18 @@
     .roadmap-hero {
       background-image:
         linear-gradient(rgba(12,74,110,0.65), rgba(12,74,110,0.65)),
-        url('https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/d2/e9/d2e9b7cd-cb51-41aa-a591-b96117052c18/opener_-_1_-_1a56abea-de68-49aa-aaf7-a8b9569b22d8.jpg');
+        url('https://i.postimg.cc/Ssv0kj47/Crypto-Lifeguard-background.webp');
       background-size: cover;
       background-position: center;
+      background-attachment: scroll;
     }
+    @media (min-width:768px){ .roadmap-hero{ background-attachment: fixed; } }
+    .lift-strong{transition:transform .2s ease,box-shadow .25s ease,border-color .2s ease}
+    .lift-strong:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 40px rgba(2,132,199,.25);border-color:#3b82f6!important}
   </style>
 </head>
 <body class="font-sans text-gray-800">
 
-  <!-- Header -->
   <header class="gradient-bg text-white sticky top-0 z-50 shadow-lg">
     <nav class="container mx-auto flex items-center justify-between py-4 px-6">
       <a href="index.html" class="font-extrabold tracking-tight flex items-center gap-2">⛑️ <span>Crypto Lifeguard</span></a>
@@ -29,12 +32,12 @@
         <li><a href="index.html#pricing" class="hover:text-cyan-200 transition">Pricing</a></li>
         <li><a href="index.html#faq" class="hover:text-cyan-200 transition">FAQ</a></li>
         <li><a href="roadmap.html" class="hover:text-cyan-200 transition">Roadmap</a></li>
+        <li><a href="contact.html" class="hover:text-cyan-200 transition">Contact</a></li>
         <li><a href="index.html#beta" class="bg-yellow-400 text-black px-4 py-2 rounded-full hover:bg-yellow-300 transition">Join the beta</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Hero -->
   <section class="roadmap-hero text-white">
     <div class="container mx-auto px-6 py-16">
       <div class="max-w-3xl">
@@ -44,12 +47,11 @@
     </div>
   </section>
 
-  <!-- Phases -->
   <section class="nautical-bg">
     <div class="container mx-auto px-6 py-12">
       <h2 class="text-3xl font-bold mb-6">Phases</h2>
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-white rounded-xl shadow p-6">
+        <div class="bg-white rounded-xl shadow p-6 border border-blue-100 lift-strong">
           <div class="text-2xl mb-2">🛟 Beta (Current)</div>
           <ul class="list-disc list-inside space-y-1 text-gray-700">
             <li>Wallet-aware alerts (read-only)</li>
@@ -58,7 +60,7 @@
             <li>Community feed</li>
           </ul>
         </div>
-        <div class="bg-white rounded-xl shadow p-6">
+        <div class="bg-white rounded-xl shadow p-6 border border-blue-100 lift-strong">
           <div class="text-2xl mb-2">🏝️ Phase 1</div>
           <ul class="list-disc list-inside space-y-1 text-gray-700">
             <li>Multi-chain expansion (ETH, SOL + more)</li>
@@ -67,7 +69,7 @@
             <li>AI weekly briefings (Premium+)</li>
           </ul>
         </div>
-        <div class="bg-white rounded-xl shadow p-6">
+        <div class="bg-white rounded-xl shadow p-6 border border-blue-100 lift-strong">
           <div class="text-2xl mb-2">🌅 Phase 2</div>
           <ul class="list-disc list-inside space-y-1 text-gray-700">
             <li>DeFi risk alerts & lists</li>
@@ -80,7 +82,6 @@
     </div>
   </section>
 
-  <!-- Timeline -->
   <section class="bg-white">
     <div class="container mx-auto px-6 py-12">
       <h2 class="text-3xl font-bold mb-6">Timeline</h2>
@@ -109,7 +110,6 @@
     </div>
   </section>
 
-  <!-- Get Involved -->
   <section class="nautical-bg">
     <div class="container mx-auto px-6 py-12 text-center">
       <h2 class="text-3xl font-bold mb-3">Help shape the roadmap</h2>
@@ -118,7 +118,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="gradient-bg text-white py-10">
     <div class="container mx-auto px-6 text-center">
       <div class="flex justify-center mb-4">
@@ -135,8 +134,6 @@
     </div>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
