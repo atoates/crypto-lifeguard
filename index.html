@@ -9,19 +9,24 @@
     .gradient-bg { background: linear-gradient(135deg, #0c4a6e 0%, #38bdf8 100%); }
     .nautical-bg { background-color: #F0F9FF; }
 
-    /* HERO: full viewport + fixed background on desktop, now using your image */
+    /* HERO: full viewport + fixed on desktop, new image showing more of the top */
     .hero-bg {
       background-image:
         linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url('https://i.postimg.cc/Ssv0kj47/Crypto-Lifeguard-background.webp');
+        url('https://i.postimg.cc/vZf6n6ST/Crypto-Lifeguard-background.webp');
       background-size: cover;
-      background-position: center;
+      background-position: 50% 8%; /* bias toward top */
       min-height: 100vh;
       position: relative;
       color: #fff;
-      background-attachment: scroll;
+      background-attachment: scroll; /* default for mobile */
     }
-    @media (min-width: 768px) { .hero-bg { background-attachment: fixed; } }
+    @media (min-width: 768px) {
+      .hero-bg {
+        background-attachment: fixed;
+        background-position: 50% 10%; /* slightly different for desktops */
+      }
+    }
 
     .hero-logo { position: absolute; top: 5%; left: 50%; transform: translateX(-50%); z-index: 10; }
     .hero-logo img { height: 12rem; width: auto; }
@@ -35,7 +40,7 @@
     @keyframes betaPulse { 0%{box-shadow:0 0 0 0 rgba(255,215,0,.65);} 70%{box-shadow:0 0 0 22px rgba(255,215,0,0);} 100%{box-shadow:0 0 0 0 rgba(255,215,0,0);} }
     .beta-cta { animation: betaPulse 2s infinite; }
 
-    /* Framed feature badges */
+    /* Feature badges */
     .feature-badge{
       display:inline-flex;align-items:center;gap:.35rem;
       padding:.25rem .6rem;border:2px solid #93c5fd;color:#1e3a8a;
@@ -135,9 +140,7 @@
     </div>
   </section>
 
-  <!-- (rest of sections unchanged from previous message: Verification, How it works, B2B, Pricing, Beta, FAQ) -->
-
-  <!-- Verification + Human Design -->
+  <!-- VERIFICATION -->
   <section class="py-16 nautical-bg">
     <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10">
       <div>
@@ -200,9 +203,7 @@
     </div>
   </section>
 
-  <!-- PRICING, BETA, FAQ, Footer (unchanged except nav already has Contact) -->
-  <!-- ... keep from your previous version ... -->
-
+  <!-- PRICING -->
   <section id="pricing" class="py-16 bg-white">
     <div class="container mx-auto px-6">
       <h2 class="text-3xl font-bold text-center mb-1">Simple, transparent pricing</h2>
@@ -243,6 +244,7 @@
     </div>
   </section>
 
+  <!-- BETA -->
   <section id="beta" class="py-16 gradient-bg text-white">
     <div class="container mx-auto px-6 text-center">
       <h2 class="text-3xl font-bold mb-3">Join the beta</h2>
@@ -269,6 +271,7 @@
     </div>
   </section>
 
+  <!-- FAQ -->
   <section id="faq" class="py-16 nautical-bg">
     <div class="container mx-auto px-6">
       <h2 class="text-3xl font-bold text-center mb-10">FAQs</h2>
@@ -293,6 +296,7 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="gradient-bg text-white py-10">
     <div class="container mx-auto px-6 text-center">
       <div class="flex justify-center mb-4">
