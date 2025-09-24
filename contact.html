@@ -8,24 +8,26 @@
   <style>
     .gradient-bg { background: linear-gradient(135deg, #0c4a6e 0%, #38bdf8 100%); }
     .nautical-bg { background-color: #F0F9FF; }
+
+    /* New contact hero image */
     .contact-hero {
       background-image:
         linear-gradient(rgba(12,74,110,0.65), rgba(12,74,110,0.65)),
-        url('https://i.postimg.cc/mg880JB7/Screenshot-2025-09-23-at-5-45-50-AM.png');
+        url('https://i.postimg.cc/mksnb9q9/Screenshot-2025-09-24-at-3-06-35-AM.png');
       background-size: cover;
       background-position: center;
+      background-attachment: scroll;
     }
-    @keyframes betaPulse {
-      0% { box-shadow: 0 0 0 0 rgba(255,215,0,.65); }
-      70% { box-shadow: 0 0 0 22px rgba(255,215,0,0); }
-      100% { box-shadow: 0 0 0 0 rgba(255,215,0,0); }
-    }
+    @media (min-width:768px){ .contact-hero{ background-attachment: fixed; } }
+
+    @keyframes betaPulse { 0%{box-shadow:0 0 0 0 rgba(255,215,0,.65);} 70%{box-shadow:0 0 0 22px rgba(255,215,0,0);} 100%{box-shadow:0 0 0 0 rgba(255,215,0,0);} }
     .beta-cta { animation: betaPulse 2s infinite; }
+    .lift-strong{transition:transform .2s ease,box-shadow .25s ease,border-color .2s ease}
+    .lift-strong:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 40px rgba(2,132,199,.25);border-color:#3b82f6!important}
   </style>
 </head>
 <body class="font-sans text-gray-800">
 
-  <!-- Header -->
   <header class="gradient-bg text-white sticky top-0 z-50 shadow-lg">
     <nav class="container mx-auto flex items-center justify-between py-4 px-6">
       <a href="index.html" class="font-extrabold tracking-tight flex items-center gap-2">⛑️ <span>Crypto Lifeguard</span></a>
@@ -35,12 +37,12 @@
         <li><a href="index.html#pricing" class="hover:text-cyan-200 transition">Pricing</a></li>
         <li><a href="index.html#faq" class="hover:text-cyan-200 transition">FAQ</a></li>
         <li><a href="roadmap.html" class="hover:text-cyan-200 transition">Roadmap</a></li>
+        <li><a href="contact.html" class="hover:text-cyan-200 transition">Contact</a></li>
         <li><a href="index.html#beta" class="bg-yellow-400 text-black px-4 py-2 rounded-full hover:bg-yellow-300 transition beta-cta">Join the beta</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Hero -->
   <section class="contact-hero text-white">
     <div class="container mx-auto px-6 py-16">
       <div class="max-w-3xl">
@@ -50,12 +52,10 @@
     </div>
   </section>
 
-  <!-- Contact -->
   <main class="nautical-bg">
     <div class="container mx-auto px-6 py-12">
       <div class="grid lg:grid-cols-3 gap-8 items-stretch">
-        <!-- Info -->
-        <aside class="lg:col-span-1 bg-white rounded-2xl shadow p-6 flex flex-col justify-between">
+        <aside class="lg:col-span-1 bg-white rounded-2xl shadow p-6 flex flex-col justify-between lift-strong border border-blue-100">
           <div>
             <h2 class="text-2xl font-bold mb-3">We’re here to help</h2>
             <p class="text-gray-700 mb-6">Whether you’re an everyday holder, an exchange, or a project team, we’d love to hear from you.</p>
@@ -70,8 +70,7 @@
           </div>
         </aside>
 
-        <!-- Form -->
-        <section class="lg:col-span-2 bg-white rounded-2xl shadow p-6 md:p-8">
+        <section class="lg:col-span-2 bg-white rounded-2xl shadow p-6 md:p-8 lift-strong border border-blue-100">
           <h2 class="text-2xl font-bold mb-2">Send us a message</h2>
           <p class="text-gray-700 mb-6">We typically reply within 1–2 business days.</p>
           <form class="space-y-5" onsubmit="event.preventDefault(); handleSubmit(this);">
@@ -86,7 +85,6 @@
               </div>
             </div>
 
-            <!-- Same dropdown as main page -->
             <div>
               <label for="role" class="block mb-1 font-semibold">How will you use Crypto Lifeguard?</label>
               <select id="role" name="role" class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
@@ -116,7 +114,6 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="gradient-bg text-white py-10">
     <div class="container mx-auto px-6 text-center">
       <div class="flex justify-center mb-4">
@@ -134,11 +131,7 @@
   </footer>
 
   <script>
-    function handleSubmit(form) {
-      const sent = document.getElementById('sent');
-      if (sent) sent.classList.remove('hidden');
-      form.reset();
-    }
+    function handleSubmit(form){ const sent=document.getElementById('sent'); if(sent) sent.classList.remove('hidden'); form.reset(); }
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
