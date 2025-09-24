@@ -6,16 +6,22 @@
   <title>Crypto Lifeguard — Rescue Your Tokens</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Hero Fix */
+    /* Keep your existing backgrounds/colours: */
+    .gradient-bg { background: linear-gradient(135deg, #0c4a6e 0%, #38bdf8 100%); }
+    .nautical-bg { background-color: #F0F9FF; }
     .hero-bg {
       background-image:
+        /* your overlay & image kept as-is */
         linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
         url('https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/d2/e9/d2e9b7cd-cb51-41aa-a591-b96117052c18/opener_-_1_-_1a56abea-de68-49aa-aaf7-a8b9569b22d8.jpg');
       background-size: cover;
       background-position: center;
       min-height: 65vh;
       position: relative;
+      color: #fff;
     }
+
+    /* HERO spacing fix (more room below logo) */
     .hero-logo {
       position: absolute;
       top: 5%;
@@ -26,14 +32,20 @@
     .hero-logo img { height: 12rem; width: auto; }
     .hero-content {
       position: relative;
-      padding-top: 15rem; /* more padding */
+      padding-top: 16rem; /* increased from prior so title never collides */
+      padding-bottom: 2rem;
       text-align: center;
     }
+    @media (max-width: 768px) {
+      .hero-logo { top: 0.75rem; }
+      .hero-logo img { height: 8rem; }
+      .hero-content { padding-top: 9.5rem; }
+    }
 
-    /* Pulse for Join buttons */
+    /* Pulse for key CTAs */
     @keyframes betaPulse {
       0% { box-shadow: 0 0 0 0 rgba(255,215,0,.65); }
-      70% { box-shadow: 0 0 0 20px rgba(255,215,0,0); }
+      70% { box-shadow: 0 0 0 22px rgba(255,215,0,0); }
       100% { box-shadow: 0 0 0 0 rgba(255,215,0,0); }
     }
     .beta-cta { animation: betaPulse 2s infinite; }
@@ -42,9 +54,9 @@
 <body class="font-sans antialiased text-gray-900">
 
   <!-- Header -->
-  <header class="bg-blue-900 text-white sticky top-0 z-50 shadow-lg">
+  <header class="gradient-bg text-white sticky top-0 z-50 shadow-lg">
     <nav class="container mx-auto flex items-center justify-between py-4 px-6">
-      <div class="font-bold">⛑️ Crypto Lifeguard</div>
+      <div class="font-extrabold tracking-tight">⛑️ Crypto Lifeguard</div>
       <ul class="hidden md:flex space-x-6 text-sm font-medium">
         <li><a href="#features" class="hover:text-cyan-200 transition">Features</a></li>
         <li><a href="#how-it-works" class="hover:text-cyan-200 transition">How it works</a></li>
@@ -55,41 +67,240 @@
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="hero-bg text-white py-20">
+  <!-- HERO -->
+  <section class="hero-bg">
     <div class="hero-logo">
+      <!-- keep your logo -->
       <img src="https://i.postimg.cc/Fz0xdDzd/Crypto-Lifeguard-Logo-Striking-Impact-background.png" alt="Crypto Lifeguard logo">
     </div>
     <div class="hero-content container mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Crypto Lifeguard — Protect Your Tokens Before It’s Too Late</h1>
-      <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">Personalised, verified alerts that keep you safe from missed migrations, forks, and scams.</p>
-      <div class="flex justify-center space-x-4">
-        <a href="#beta" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition beta-cta">Join the Beta</a>
+      <!-- Improved headline/subtitle that mentions Crypto Lifeguard -->
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Crypto Lifeguard — Protect Your Tokens Before It’s Too Late</h1>
+      <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
+        Personalised, verified alerts from Crypto Lifeguard keep you safe from missed migrations, forks, protocol changes and scams — without notification fatigue.
+      </p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a href="#beta" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition beta-cta">Join the beta</a>
         <a href="#how-it-works" class="border-2 border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition">See how it works</a>
+      </div>
+      <!-- badges row -->
+      <div class="flex justify-center gap-2 flex-wrap mt-6 text-sm">
+        <span class="bg-white/10 backdrop-blur px-3 py-1 rounded-full">🌊 Wallet-aware alerts</span>
+        <span class="bg-white/10 backdrop-blur px-3 py-1 rounded-full">🛡️ Dev & team verification</span>
+        <span class="bg-white/10 backdrop-blur px-3 py-1 rounded-full">⏱️ Deadline countdowns</span>
+        <span class="bg-white/10 backdrop-blur px-3 py-1 rounded-full">🤖 Weekly AI updates</span>
       </div>
     </div>
   </section>
 
-  <!-- (keep your Features, How it works, Pricing, Beta sections here unchanged) -->
-
-  <!-- FAQ -->
-  <section id="faq" class="py-16 bg-gray-50">
+  <!-- FEATURES (original content kept) -->
+  <section id="features" class="py-16 bg-white">
     <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center mb-12">FAQs</h2>
+      <h2 class="text-3xl font-bold text-center mb-12">Features</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-6 bg-blue-50 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="text-4xl mb-4">📣</div>
+          <h3 class="text-xl font-semibold mb-2">No notification fatigue</h3>
+          <p>Alerts are tailored to your connected wallets/watchlist. If you don’t hold it, you won’t be pinged.</p>
+          <div class="mt-2 text-teal-700 font-semibold text-sm">Personalised</div>
+        </div>
+        <div class="text-center p-6 bg-blue-50 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="text-4xl mb-4">🧭</div>
+          <h3 class="text-xl font-semibold mb-2">Trusted by design</h3>
+          <p>Token-gated posting; stake to up-/down-vote; dev & team verification badges; consensus highlights.</p>
+          <div class="mt-2 text-teal-700 font-semibold text-sm">Bot-resistant</div>
+        </div>
+        <div class="text-center p-6 bg-blue-50 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="text-4xl mb-4">⏱️</div>
+          <h3 class="text-xl font-semibold mb-2">Countdown to deadlines</h3>
+          <p>Time-sensitive bars and alerts for migrations and cut-offs so you never miss critical changes.</p>
+          <div class="mt-2 text-teal-700 font-semibold text-sm">Actionable</div>
+        </div>
+        <div class="text-center p-6 bg-blue-50 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="text-4xl mb-4">🤖</div>
+          <h3 class="text-xl font-semibold mb-2">AI weekly updates</h3>
+          <p>A concise Sunday briefing personalised to your holdings. Available on Premium and above.</p>
+          <div class="mt-2 text-teal-700 font-semibold text-sm">Proactive</div>
+        </div>
+        <div class="text-center p-6 bg-blue-50 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="text-4xl mb-4">👝</div>
+          <h3 class="text-xl font-semibold mb-2">Multi-chain wallet tracking</h3>
+          <p>Connect wallets (read-only) to monitor risk across ecosystems without sharing private keys.</p>
+          <div class="mt-2 text-teal-700 font-semibold text-sm">Secure</div>
+        </div>
+        <div class="text-center p-6 bg-blue-50 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="text-4xl mb-4">🏅</div>
+          <h3 class="text-xl font-semibold mb-2">Earn while you help</h3>
+          <p>Post useful “alpha”, verify news, or spot scams to earn points and $GUARD rewards.</p>
+          <div class="mt-2 text-teal-700 font-semibold text-sm">Rewarding</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Verification / Designed for real people (original content kept) -->
+  <section class="py-16 nautical-bg">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10">
+      <div>
+        <h2 class="text-3xl font-bold mb-3">Verification you can see</h2>
+        <p class="mb-4">
+          Badges show who verified what: <strong>Gold shield</strong> (Crypto Lifeguard team), <strong>Blue shield</strong> (dev-verified), <strong>Green tick</strong> (community consensus).
+          Stake to express confidence and earn rewards when the truth is confirmed.
+        </p>
+        <ul class="list-disc list-inside space-y-1">
+          <li>🏆 Consensus highlights rise to the top</li>
+          <li>🛡️ Token-gated posting keeps bots at bay</li>
+          <li>🚨 Severity icons: red siren, yellow flag, green buoy</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-3xl font-bold mb-3">Designed for real people</h2>
+        <p class="mb-4">Clear language, practical links, and verified paths to act. No hype, no spam — just the information you need to stay safe.</p>
+        <ul class="list-disc list-inside space-y-1">
+          <li>🔗 Official migration links surfaced</li>
+          <li>🧭 Step-by-step checklists</li>
+          <li>📬 Reward notifications when your alpha helps others</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS (original content kept) -->
+  <section id="how-it-works" class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-10">How it works</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center p-6 rounded-lg border">
+          <div class="text-5xl font-extrabold text-blue-600">1</div>
+          <h3 class="text-xl font-semibold mt-3 mb-2">Connect wallet(s)</h3>
+          <p>We scan your holdings (read-only) to tailor alerts. Add a watchlist if you prefer.</p>
+        </div>
+        <div class="text-center p-6 rounded-lg border">
+          <div class="text-5xl font-extrabold text-blue-600">2</div>
+          <h3 class="text-xl font-semibold mt-3 mb-2">Get relevant alerts</h3>
+          <p>Only for tokens you hold. Severity and countdowns indicate urgency, with verified links to act.</p>
+        </div>
+        <div class="text-center p-6 rounded-lg border">
+          <div class="text-5xl font-extrabold text-blue-600">3</div>
+          <h3 class="text-xl font-semibold mt-3 mb-2">Contribute & earn</h3>
+          <p>Stake $GUARD to comment or vote. Post useful “alpha” and share verified info to earn rewards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- For teams & platforms (original content kept) -->
+  <section class="py-16 nautical-bg">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-4">For teams & platforms</h2>
+      <p class="mb-8">APIs for wallets/exchanges, dev-verified broadcast channels, and enterprise exploit monitoring.</p>
+      <ul class="grid md:grid-cols-3 gap-6 mb-6">
+        <li class="bg-white p-6 rounded-lg shadow">🔌 White-label alerts API</li>
+        <li class="bg-white p-6 rounded-lg shadow">📣 Project broadcast portal</li>
+        <li class="bg-white p-6 rounded-lg shadow">📊 Enterprise dashboards</li>
+      </ul>
+      <p class="text-gray-700 mb-4">Talk to us about annual plans.</p>
+      <a href="contact.html" class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition">Get in touch</a>
+    </div>
+  </section>
+
+  <!-- Pricing (original content kept) -->
+  <section id="pricing" class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-1">Simple, transparent pricing</h2>
+      <p class="text-center mb-8">Save 40% with the $GUARD token on paid plans.</p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 bg-blue-50 rounded-lg shadow text-center">
+          <h3 class="text-xl font-semibold mb-2">Free</h3>
+          <p class="text-2xl font-extrabold mb-4">£0<span class="text-sm font-medium">/mo</span></p>
+          <ul class="space-y-1 mb-6">
+            <li>✓ 3 wallets</li>
+            <li>✓ Basic alerts</li>
+            <li>✓ Verification badges (read-only)</li>
+          </ul>
+          <a href="#beta" class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition">Get started</a>
+        </div>
+        <div class="p-6 bg-blue-50 rounded-lg shadow text-center border-2 border-blue-600">
+          <h3 class="text-xl font-semibold mb-2">Premium</h3>
+          <p class="mb-4">
+            <span class="line-through opacity-70">£4.99</span>
+            <span class="text-2xl font-extrabold"> £2.99</span>
+            <span class="text-sm"> with $GUARD</span>
+          </p>
+          <ul class="space-y-1 mb-6">
+            <li>✓ Unlimited wallets</li>
+            <li>✓ AI weekly updates</li>
+            <li>✓ Community feed</li>
+          </ul>
+          <a href="#beta" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition beta-cta">Start Premium</a>
+        </div>
+        <div class="p-6 bg-blue-50 rounded-lg shadow text-center">
+          <h3 class="text-xl font-semibold mb-2">Pro</h3>
+          <p class="mb-4">
+            <span class="line-through opacity-70">£9.99</span>
+            <span class="text-2xl font-extrabold"> £5.99</span>
+            <span class="text-sm"> with $GUARD</span>
+          </p>
+          <ul class="space-y-1 mb-6">
+            <li>✓ DeFi alerts</li>
+            <li>✓ CSV exports</li>
+            <li>✓ Priority support</li>
+          </ul>
+          <a href="#beta" class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition">Go Pro</a>
+        </div>
+      </div>
+      <p class="text-center mt-8">We never ask for seed phrases. Read-only connections only.</p>
+    </div>
+  </section>
+
+  <!-- Join the beta (original content kept) -->
+  <section id="beta" class="py-16 gradient-bg text-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-3">Join the beta</h2>
+      <p class="mb-8">Be first in line. We’ll email you when invites roll out.</p>
+      <div class="max-w-md mx-auto">
+        <label class="sr-only" for="email">Email</label>
+        <input id="email" type="email" placeholder="you@example.com" class="w-full p-3 mb-4 rounded-lg text-gray-900" />
+        <label class="sr-only" for="role">How will you use Crypto Lifeguard?</label>
+        <select id="role" class="w-full p-3 mb-4 rounded-lg text-gray-900">
+          <option>How will you use Crypto Lifeguard?</option>
+          <option>Personal</option>
+          <option>Professional (fund/exchange/project)</option>
+          <option>Both</option>
+        </select>
+        <button class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition beta-cta">Request invite</button>
+        <p class="mt-4 text-sm opacity-90">By joining you agree to receive product emails. Opt out anytime.</p>
+      </div>
+
+      <div class="mt-10">
+        <h3 class="text-xl font-semibold mb-3">Early-access perks</h3>
+        <ul class="max-w-md mx-auto list-disc list-inside space-y-1 text-left">
+          <li>🎁 Beta airdrop for top contributors</li>
+          <li>🏷️ 40% token discount on Premium/Pro</li>
+          <li>🧪 Help shape features before launch</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ as dropdowns -->
+  <section id="faq" class="py-16 nautical-bg">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-10">FAQs</h2>
       <div class="max-w-2xl mx-auto space-y-4">
-        <details class="p-4 bg-white rounded shadow">
+        <details class="bg-white p-4 rounded shadow">
           <summary class="font-semibold cursor-pointer">Do you ever ask for seed phrases or private keys?</summary>
           <p class="mt-2 text-gray-700">Never. Connections are read-only. We’ll only ask for standard wallet permissions to view balances for alert personalisation.</p>
         </details>
-        <details class="p-4 bg-white rounded shadow">
+        <details class="bg-white p-4 rounded shadow">
           <summary class="font-semibold cursor-pointer">What blockchains are supported?</summary>
           <p class="mt-2 text-gray-700">We’re starting with majors (e.g., Ethereum and Solana) and expanding based on demand.</p>
         </details>
-        <details class="p-4 bg-white rounded shadow">
+        <details class="bg-white p-4 rounded shadow">
           <summary class="font-semibold cursor-pointer">How do rewards work?</summary>
           <p class="mt-2 text-gray-700">Post useful alpha, verify news, or flag scams to earn points. Points convert to $GUARD periodically; higher-quality contributions earn more.</p>
         </details>
-        <details class="p-4 bg-white rounded shadow">
+        <details class="bg-white p-4 rounded shadow">
           <summary class="font-semibold cursor-pointer">What makes verification trustworthy?</summary>
           <p class="mt-2 text-gray-700">A layered model: dev confirmations, Crypto Lifeguard team checks, and token-backed community consensus. Items with strongest alignment surface first.</p>
         </details>
@@ -98,23 +309,24 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-blue-900 text-white py-8">
+  <footer class="gradient-bg text-white py-10">
     <div class="container mx-auto px-6 text-center">
       <div class="flex justify-center mb-4">
-        <img src="https://i.postimg.cc/Fz0xdDzd/Crypto-Lifeguard-Logo-Striking-Impact-background.png" alt="Crypto Lifeguard logo" class="h-16 w-auto"> <!-- bigger -->
+        <!-- Bigger footer logo per your request -->
+        <img src="https://i.postimg.cc/Fz0xdDzd/Crypto-Lifeguard-Logo-Striking-Impact-background.png" alt="Crypto Lifeguard logo" class="h-20 w-auto">
       </div>
       <p class="mb-4">Protecting everyday crypto users with actionable, verified alerts.</p>
-      <div class="flex justify-center space-x-4">
+      <div class="flex justify-center gap-4">
         <a href="privacy.html" class="hover:text-cyan-200 transition">Privacy</a>
         <a href="terms.html" class="hover:text-cyan-200 transition">Terms</a>
         <a href="contact.html" class="hover:text-cyan-200 transition">Contact</a>
       </div>
-      <p class="mt-4 text-sm">© Crypto Lifeguard. All rights reserved.</p>
+      <p class="mt-4 text-sm opacity-90">© <span id="year"></span> Crypto Lifeguard. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
