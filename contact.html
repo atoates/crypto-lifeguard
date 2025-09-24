@@ -6,11 +6,8 @@
   <title>Contact — Crypto Lifeguard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Brand helpers (match index.html styles) */
     .gradient-bg { background: linear-gradient(135deg, #0c4a6e 0%, #38bdf8 100%); }
     .nautical-bg { background-color: #F0F9FF; }
-
-    /* Hero background using your image */
     .contact-hero {
       background-image:
         linear-gradient(rgba(12,74,110,0.65), rgba(12,74,110,0.65)),
@@ -18,8 +15,6 @@
       background-size: cover;
       background-position: center;
     }
-
-    /* Pulse for important CTAs (optional use on Send button) */
     @keyframes betaPulse {
       0% { box-shadow: 0 0 0 0 rgba(255,215,0,.65); }
       70% { box-shadow: 0 0 0 22px rgba(255,215,0,0); }
@@ -30,17 +25,16 @@
 </head>
 <body class="font-sans text-gray-800">
 
-  <!-- Header / Menu bar -->
+  <!-- Header -->
   <header class="gradient-bg text-white sticky top-0 z-50 shadow-lg">
     <nav class="container mx-auto flex items-center justify-between py-4 px-6">
-      <a href="index.html" class="font-extrabold tracking-tight flex items-center gap-2">
-        ⛑️ <span>Crypto Lifeguard</span>
-      </a>
+      <a href="index.html" class="font-extrabold tracking-tight flex items-center gap-2">⛑️ <span>Crypto Lifeguard</span></a>
       <ul class="hidden md:flex space-x-6 text-sm font-medium">
         <li><a href="index.html#features" class="hover:text-cyan-200 transition">Features</a></li>
         <li><a href="index.html#how-it-works" class="hover:text-cyan-200 transition">How it works</a></li>
         <li><a href="index.html#pricing" class="hover:text-cyan-200 transition">Pricing</a></li>
         <li><a href="index.html#faq" class="hover:text-cyan-200 transition">FAQ</a></li>
+        <li><a href="roadmap.html" class="hover:text-cyan-200 transition">Roadmap</a></li>
         <li><a href="index.html#beta" class="bg-yellow-400 text-black px-4 py-2 rounded-full hover:bg-yellow-300 transition beta-cta">Join the beta</a></li>
       </ul>
     </nav>
@@ -51,24 +45,20 @@
     <div class="container mx-auto px-6 py-16">
       <div class="max-w-3xl">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Contact Crypto Lifeguard</h1>
-        <p class="text-lg md:text-xl opacity-95">
-          Questions, partnerships, press — or just say hello. We’ll get back to you as soon as we can.
-        </p>
+        <p class="text-lg md:text-xl opacity-95">Questions, partnerships, press — or just say hello. We’ll get back to you as soon as we can.</p>
       </div>
     </div>
   </section>
 
-  <!-- Contact content -->
+  <!-- Contact -->
   <main class="nautical-bg">
     <div class="container mx-auto px-6 py-12">
       <div class="grid lg:grid-cols-3 gap-8 items-stretch">
-        <!-- Info / CTA card -->
+        <!-- Info -->
         <aside class="lg:col-span-1 bg-white rounded-2xl shadow p-6 flex flex-col justify-between">
           <div>
             <h2 class="text-2xl font-bold mb-3">We’re here to help</h2>
-            <p class="text-gray-700 mb-6">
-              Whether you’re an everyday holder, an exchange, or a project team, we’d love to hear from you.
-            </p>
+            <p class="text-gray-700 mb-6">Whether you’re an everyday holder, an exchange, or a project team, we’d love to hear from you.</p>
             <ul class="space-y-3 text-gray-800">
               <li>📬 <span class="font-semibold">Email:</span> <a class="text-blue-600 hover:underline" href="mailto:contact@cryptolifeguard.app">contact@cryptolifeguard.app</a></li>
               <li>🕒 <span class="font-semibold">Hours:</span> Mon–Fri, 9:00–18:00 (UK)</li>
@@ -76,17 +66,14 @@
             </ul>
           </div>
           <div class="mt-8">
-            <a href="index.html#beta" class="inline-block bg-yellow-400 text-black px-5 py-3 rounded-full font-semibold hover:bg-yellow-300 transition beta-cta">
-              Join the beta
-            </a>
+            <a href="index.html#beta" class="inline-block bg-yellow-400 text-black px-5 py-3 rounded-full font-semibold hover:bg-yellow-300 transition beta-cta">Join the beta</a>
           </div>
         </aside>
 
-        <!-- Form card -->
+        <!-- Form -->
         <section class="lg:col-span-2 bg-white rounded-2xl shadow p-6 md:p-8">
           <h2 class="text-2xl font-bold mb-2">Send us a message</h2>
           <p class="text-gray-700 mb-6">We typically reply within 1–2 business days.</p>
-
           <form class="space-y-5" onsubmit="event.preventDefault(); handleSubmit(this);">
             <div class="grid md:grid-cols-2 gap-5">
               <div>
@@ -99,7 +86,7 @@
               </div>
             </div>
 
-            <!-- DROPDOWN from main page -->
+            <!-- Same dropdown as main page -->
             <div>
               <label for="role" class="block mb-1 font-semibold">How will you use Crypto Lifeguard?</label>
               <select id="role" name="role" class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
@@ -120,9 +107,7 @@
             </div>
 
             <div class="flex flex-wrap items-center gap-4">
-              <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition">
-                Send message
-              </button>
+              <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition">Send message</button>
               <p id="sent" class="hidden text-green-700 font-semibold">Thanks — your message has been recorded.</p>
             </div>
           </form>
@@ -135,12 +120,13 @@
   <footer class="gradient-bg text-white py-10">
     <div class="container mx-auto px-6 text-center">
       <div class="flex justify-center mb-4">
-        <img src="https://i.postimg.cc/Fz0xdDzd/Crypto-Lifeguard-Logo-Striking-Impact-background.png" alt="Crypto Lifeguard logo" class="h-16 w-auto">
+        <img src="https://i.postimg.cc/Fz0xdDzd/Crypto-Lifeguard-Logo-Striking-Impact-background.png" alt="Crypto Lifeguard logo" class="h-20 w-auto">
       </div>
       <p class="mb-4">Protecting everyday crypto users with actionable, verified alerts.</p>
       <div class="flex justify-center gap-4">
         <a href="privacy.html" class="hover:text-cyan-200 transition">Privacy</a>
         <a href="terms.html" class="hover:text-cyan-200 transition">Terms</a>
+        <a href="roadmap.html" class="hover:text-cyan-200 transition">Roadmap</a>
         <a href="contact.html" class="hover:text-cyan-200 transition">Contact</a>
       </div>
       <p class="mt-4 text-sm opacity-90">© <span id="year"></span> Crypto Lifeguard. All rights reserved.</p>
@@ -148,7 +134,6 @@
   </footer>
 
   <script>
-    // Fake submit handler (replace with your endpoint or mailto later)
     function handleSubmit(form) {
       const sent = document.getElementById('sent');
       if (sent) sent.classList.remove('hidden');
