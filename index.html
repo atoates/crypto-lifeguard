@@ -51,6 +51,15 @@
     /* Strong rollover */
     .lift-strong{transition:transform .2s ease,box-shadow .25s ease,border-color .2s ease}
     .lift-strong:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 40px rgba(2,132,199,.25);border-color:#3b82f6!important}
+
+    /* Hero button hover effects */
+    .hero-button {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hero-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
   </style>
 </head>
 <body class="font-sans antialiased text-gray-900">
@@ -80,11 +89,11 @@
       <h1 class="text-5xl md:text-6xl font-extrabold mb-2 leading-tight">Crypto Lifeguard</h1>
       <p class="text-xl md:text-2xl opacity-95 mb-6">Protect Your Tokens Before It’s Too Late</p>
       <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
-        Personalised, verified alerts from Crypto Lifeguard keep you safe from missed migrations, forks, protocol changes and scams — without notification fatigue.
+        Personalised, verified alerts from Crypto Lifeguard keep you safe from missed migrations, forks, protocol changes and scams - without notification fatigue.
       </p>
       <div class="flex justify-center gap-4 flex-wrap">
-        <a href="#beta" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition beta-cta">Join the beta</a>
-        <a href="#how-it-works" class="border-2 border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition">See how it works</a>
+        <a href="#beta" class="hero-button bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition beta-cta">Join the beta</a>
+        <a href="#how-it-works" class="hero-button border-2 border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition">See how it works</a>
       </div>
       <div class="flex justify-center gap-2 flex-wrap mt-6 text-sm">
         <span class="bg-white/10 backdrop-blur px-3 py-1 rounded-full">🌊 Wallet-aware alerts</span>
