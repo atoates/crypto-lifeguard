@@ -7,7 +7,7 @@
   <meta name="description" content="What we've launched, what's next, and how you can help shape it."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -28,7 +28,8 @@
 </head>
 <body class="antialiased">
 
-  <!-- SVG symbol definitions -->
+  <div class="scroll-progress" id="progressBar"></div>
+
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <symbol id="logo-mark" viewBox="0 0 64 64">
@@ -41,26 +42,23 @@
           <line x1="42" y1="32" x2="59" y2="32"/>
         </g>
       </symbol>
-      <symbol id="i-check" viewBox="0 0 24 24">
-        <path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12l5 5L20 7"/>
-      </symbol>
-      <symbol id="i-arrow" viewBox="0 0 24 24">
-        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7"/>
-      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12l5 5L20 7"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7"/></symbol>
+      <symbol id="i-flash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol>
     </defs>
   </svg>
 
   <!-- Header -->
-  <header class="absolute top-0 left-0 right-0 z-50">
-    <nav class="container mx-auto flex items-center justify-between py-5 px-6">
+  <header class="nav-root" id="navRoot">
+    <nav class="container mx-auto flex items-center justify-between py-4 px-6">
       <a href="index.html" class="flex items-center gap-3 text-white">
         <svg class="w-8 h-8 text-white"><use href="#logo-mark"/></svg>
-        <span class="font-bold tracking-tight text-[0.95rem] leading-none">
-          <span class="block text-white/70 text-[0.68rem] font-medium tracking-[0.18em] uppercase">Crypto</span>
-          <span class="block text-white uppercase tracking-wider">Lifeguard</span>
+        <span class="font-bold tracking-tight leading-none">
+          <span class="block text-white/70 text-[0.65rem] font-medium tracking-[0.2em] uppercase">Crypto</span>
+          <span class="block text-white uppercase tracking-[0.14em] text-[0.95rem]">Lifeguard</span>
         </span>
       </a>
-      <ul class="hidden md:flex items-center space-x-8">
+      <ul class="hidden md:flex items-center gap-8">
         <li><a href="index.html#features" class="nav-link">Features</a></li>
         <li><a href="index.html#how-it-works" class="nav-link">How it works</a></li>
         <li><a href="index.html#pricing" class="nav-link">Pricing</a></li>
@@ -74,11 +72,13 @@
 
   <!-- HERO -->
   <section class="hero hero-compact">
-    <div class="relative z-10 container mx-auto px-6 flex flex-col justify-center min-h-[55vh] pt-32 pb-16">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="relative z-10 container mx-auto px-6 flex flex-col justify-center min-h-[62vh] pt-32 pb-16">
       <div class="max-w-3xl">
         <span class="eyebrow eyebrow-light">Product roadmap</span>
-        <h1 class="mt-4 text-4xl md:text-6xl font-bold text-white leading-[1.05] tracking-tight">Where we're headed.</h1>
-        <p class="mt-5 text-lg md:text-xl text-clg-blue20 max-w-2xl leading-relaxed">
+        <h1 class="mt-4 display text-white">Where we're <span class="grad-text-light">headed.</span></h1>
+        <p class="mt-6 text-lg md:text-xl text-clg-blue20 max-w-2xl leading-relaxed">
           What we've launched, what's next, and how you can help shape it.
         </p>
       </div>
@@ -86,43 +86,43 @@
   </section>
 
   <!-- PHASES -->
-  <section class="py-24 bg-white">
+  <section class="py-28 bg-white">
     <div class="container mx-auto px-6">
-      <div class="max-w-2xl mb-14">
+      <div class="max-w-2xl mb-14 reveal">
         <span class="eyebrow">Phases</span>
-        <h2 class="mt-3 text-4xl md:text-5xl font-bold text-clg-black leading-tight">Three phases, one direction.</h2>
+        <h2 class="mt-4 text-4xl md:text-6xl font-bold leading-[1.02] tracking-tight text-clg-black">Three phases, <span class="grad-text">one direction.</span></h2>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-8 border border-clg-grey10 rounded-2xl lift bg-white">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="chip">Current</span>
+        <div class="bento-item reveal delay-1">
+          <div class="flex items-center gap-2 mb-5">
+            <span class="chip chip-live">Current · Q2 2026</span>
           </div>
-          <h3 class="text-xl font-bold text-clg-black mb-4">Beta</h3>
-          <ul class="space-y-2 text-clg-grey100">
+          <h3 class="text-2xl font-bold text-clg-black mb-4">Beta</h3>
+          <ul class="space-y-2 text-clg-grey100 text-sm">
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0 mt-0.5"><use href="#i-check"/></svg>Wallet-aware alerts (read-only)</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0 mt-0.5"><use href="#i-check"/></svg>Verification badges (team, dev, community)</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0 mt-0.5"><use href="#i-check"/></svg>Deadline countdowns</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0 mt-0.5"><use href="#i-check"/></svg>Community feed</li>
           </ul>
         </div>
-        <div class="p-8 border border-clg-grey10 rounded-2xl lift bg-white">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="chip" style="background:#C4D3EB;">Next</span>
+        <div class="bento-item reveal delay-2">
+          <div class="flex items-center gap-2 mb-5">
+            <span class="chip" style="background:#C4D3EB;color:#1C4E7F;">Next · Q3 2026</span>
           </div>
-          <h3 class="text-xl font-bold text-clg-black mb-4">Phase 1</h3>
-          <ul class="space-y-2 text-clg-grey100">
+          <h3 class="text-2xl font-bold text-clg-black mb-4">Phase 1</h3>
+          <ul class="space-y-2 text-clg-grey100 text-sm">
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0 mt-0.5"><use href="#i-check"/></svg>Multi-chain expansion (ETH, SOL and more)</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0 mt-0.5"><use href="#i-check"/></svg>Project broadcast channels</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0 mt-0.5"><use href="#i-check"/></svg>White-label alerts API</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0 mt-0.5"><use href="#i-check"/></svg>Weekly AI briefings (Premium+)</li>
           </ul>
         </div>
-        <div class="p-8 border border-clg-grey10 rounded-2xl lift bg-white">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="chip" style="background:#C4E9E6; color:#14202E;">Later</span>
+        <div class="bento-item reveal delay-3">
+          <div class="flex items-center gap-2 mb-5">
+            <span class="chip" style="background:#C4E9E6; color:#14202E;">Later · Q4 2026</span>
           </div>
-          <h3 class="text-xl font-bold text-clg-black mb-4">Phase 2</h3>
-          <ul class="space-y-2 text-clg-grey100">
+          <h3 class="text-2xl font-bold text-clg-black mb-4">Phase 2</h3>
+          <ul class="space-y-2 text-clg-grey100 text-sm">
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0 mt-0.5"><use href="#i-check"/></svg>DeFi risk alerts and lists</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0 mt-0.5"><use href="#i-check"/></svg>CSV exports and dashboards</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0 mt-0.5"><use href="#i-check"/></svg>Mobile apps</li>
@@ -134,61 +134,81 @@
   </section>
 
   <!-- TIMELINE -->
-  <section class="py-24" style="background:#E1E8F0;">
+  <section class="py-28" style="background:#F4F7FB;">
     <div class="container mx-auto px-6">
-      <div class="max-w-2xl mb-14">
+      <div class="max-w-2xl mb-14 reveal">
         <span class="eyebrow">Timeline</span>
-        <h2 class="mt-3 text-4xl md:text-5xl font-bold text-clg-black leading-tight">Milestones ahead.</h2>
+        <h2 class="mt-4 text-4xl md:text-6xl font-bold leading-[1.02] tracking-tight text-clg-black">Milestones <span class="grad-text">ahead.</span></h2>
       </div>
-      <ol class="relative border-l-2 border-clg-blue/30 ml-3 max-w-3xl">
-        <li class="mb-12 ml-8">
-          <span class="absolute -left-[17px] w-8 h-8 bg-clg-blue rounded-full ring-4 ring-white flex items-center justify-center text-white text-xs font-bold">01</span>
-          <div class="text-xs font-bold uppercase tracking-[0.15em] text-clg-grey50 mb-1">Q4 2025</div>
-          <h3 class="text-2xl font-bold text-clg-black mb-2">Beta expansion</h3>
-          <p class="text-clg-grey100 leading-relaxed">Invite wave 2, verification rewards, and API early access.</p>
+      <ol class="max-w-3xl space-y-2">
+        <li class="flex gap-6 reveal">
+          <div class="relative shrink-0 w-10 flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style="background:linear-gradient(160deg,#3BB4AD,#1C4E7F);box-shadow:0 0 0 4px #F4F7FB, 0 0 0 9px rgba(59,180,173,.22), 0 10px 24px -8px rgba(28,78,127,0.4);">01</div>
+            <div class="flex-1 w-0.5 bg-clg-blue/25 mt-3"></div>
+          </div>
+          <div class="flex-1 pb-14 pt-1.5">
+            <div class="text-xs font-bold uppercase tracking-[0.15em] text-clg-blue mb-2 flex items-center gap-2">Q2 2026 <span class="chip chip-live">Live now</span></div>
+            <h3 class="text-2xl font-bold text-clg-black mb-2">Beta expansion</h3>
+            <p class="text-clg-grey100 leading-relaxed">Invite wave 2, verification rewards, and API early access. Focused on Ethereum, Solana, Base and Arbitrum to start.</p>
+          </div>
         </li>
-        <li class="mb-12 ml-8">
-          <span class="absolute -left-[17px] w-8 h-8 bg-clg-blue rounded-full ring-4 ring-white flex items-center justify-center text-white text-xs font-bold">02</span>
-          <div class="text-xs font-bold uppercase tracking-[0.15em] text-clg-grey50 mb-1">Q1 2026</div>
-          <h3 class="text-2xl font-bold text-clg-black mb-2">Multi-chain and broadcast</h3>
-          <p class="text-clg-grey100 leading-relaxed">Additional chains, dev-verified project channels, and premium AI briefings.</p>
+        <li class="flex gap-6 reveal delay-1">
+          <div class="relative shrink-0 w-10 flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style="background:linear-gradient(160deg,#1C4E7F,#14202E);box-shadow:0 0 0 4px #F4F7FB, 0 10px 24px -8px rgba(28,78,127,0.4);">02</div>
+            <div class="flex-1 w-0.5 bg-clg-blue/25 mt-3"></div>
+          </div>
+          <div class="flex-1 pb-14 pt-1.5">
+            <div class="text-xs font-bold uppercase tracking-[0.15em] text-clg-grey50 mb-2">Q3 2026</div>
+            <h3 class="text-2xl font-bold text-clg-black mb-2">Multi-chain and broadcast</h3>
+            <p class="text-clg-grey100 leading-relaxed">Additional chains, dev-verified project channels, and premium AI briefings for personalised weekly digests.</p>
+          </div>
         </li>
-        <li class="mb-12 ml-8">
-          <span class="absolute -left-[17px] w-8 h-8 bg-clg-blue rounded-full ring-4 ring-white flex items-center justify-center text-white text-xs font-bold">03</span>
-          <div class="text-xs font-bold uppercase tracking-[0.15em] text-clg-grey50 mb-1">Q2 2026</div>
-          <h3 class="text-2xl font-bold text-clg-black mb-2">Pro tooling</h3>
-          <p class="text-clg-grey100 leading-relaxed">DeFi alerts, CSV exports, team dashboards, and enterprise pilots.</p>
+        <li class="flex gap-6 reveal delay-2">
+          <div class="relative shrink-0 w-10 flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style="background:linear-gradient(160deg,#1C4E7F,#14202E);box-shadow:0 0 0 4px #F4F7FB, 0 10px 24px -8px rgba(28,78,127,0.4);">03</div>
+            <div class="flex-1 w-0.5 bg-clg-blue/25 mt-3"></div>
+          </div>
+          <div class="flex-1 pb-14 pt-1.5">
+            <div class="text-xs font-bold uppercase tracking-[0.15em] text-clg-grey50 mb-2">Q4 2026</div>
+            <h3 class="text-2xl font-bold text-clg-black mb-2">Pro tooling</h3>
+            <p class="text-clg-grey100 leading-relaxed">DeFi alerts, CSV exports, team dashboards, and the first enterprise pilots for exchanges and funds.</p>
+          </div>
         </li>
-        <li class="ml-8">
-          <span class="absolute -left-[17px] w-8 h-8 bg-clg-blue rounded-full ring-4 ring-white flex items-center justify-center text-white text-xs font-bold">04</span>
-          <div class="text-xs font-bold uppercase tracking-[0.15em] text-clg-grey50 mb-1">H2 2026</div>
-          <h3 class="text-2xl font-bold text-clg-black mb-2">Mobile and partnerships</h3>
-          <p class="text-clg-grey100 leading-relaxed">iOS and Android apps, with wallet and exchange integrations.</p>
+        <li class="flex gap-6 reveal delay-3">
+          <div class="relative shrink-0 w-10 flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style="background:linear-gradient(160deg,#1C4E7F,#14202E);box-shadow:0 0 0 4px #F4F7FB, 0 10px 24px -8px rgba(28,78,127,0.4);">04</div>
+          </div>
+          <div class="flex-1 pt-1.5">
+            <div class="text-xs font-bold uppercase tracking-[0.15em] text-clg-grey50 mb-2">H1 2027</div>
+            <h3 class="text-2xl font-bold text-clg-black mb-2">Mobile and partnerships</h3>
+            <p class="text-clg-grey100 leading-relaxed">iOS and Android apps, with wallet and exchange integrations so alerts can land wherever you already are.</p>
+          </div>
         </li>
       </ol>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-24 grad-deep-blue text-white">
-    <div class="container mx-auto px-6 text-center max-w-2xl">
+  <section class="py-28 grad-deep-blue text-white relative overflow-hidden">
+    <div class="blob blob-a" style="top:-80px;right:-120px;opacity:.45"></div>
+    <div class="container mx-auto px-6 text-center max-w-2xl relative z-10 reveal">
       <span class="eyebrow eyebrow-light">Shape the roadmap</span>
-      <h2 class="mt-3 text-4xl md:text-5xl font-bold leading-tight">Help us build what protects you best.</h2>
-      <p class="mt-5 text-clg-blue20 text-lg leading-relaxed">Tell us what would protect you best, and earn rewards for high-signal contributions.</p>
+      <h2 class="mt-4 text-4xl md:text-6xl font-bold leading-[1.02] tracking-tight">Help us build what <span class="grad-text-light">protects you best.</span></h2>
+      <p class="mt-6 text-clg-blue20 text-lg leading-relaxed">Tell us what would protect you best, and earn rewards for high-signal contributions.</p>
       <a href="contact.html" class="btn-ghost mt-8">Share feedback <svg class="w-4 h-4"><use href="#i-arrow"/></svg></a>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="pattern-bg text-white pt-20 pb-10">
+  <footer class="pattern-bg text-white pt-24 pb-10">
     <div class="container mx-auto px-6">
       <div class="grid md:grid-cols-4 gap-10 pb-14 border-b border-white/10">
         <div class="md:col-span-2">
           <div class="flex items-center gap-3 mb-5">
             <svg class="w-10 h-10 text-white"><use href="#logo-mark"/></svg>
             <span class="font-bold tracking-tight text-white leading-none">
-              <span class="block text-white/70 text-[0.68rem] font-medium tracking-[0.18em] uppercase">Crypto</span>
-              <span class="block uppercase tracking-wider">Lifeguard</span>
+              <span class="block text-white/70 text-[0.65rem] font-medium tracking-[0.2em] uppercase">Crypto</span>
+              <span class="block uppercase tracking-[0.14em]">Lifeguard</span>
             </span>
           </div>
           <p class="text-clg-blue20 max-w-md leading-relaxed">Protecting everyday crypto users with actionable, verified alerts. No hype, no spam, just signal.</p>
@@ -196,17 +216,17 @@
         <div>
           <h4 class="text-xs font-bold tracking-[0.15em] uppercase text-white/70 mb-4">Product</h4>
           <ul class="space-y-2 text-clg-blue20">
-            <li><a href="index.html#features" class="hover:text-white">Features</a></li>
-            <li><a href="index.html#pricing" class="hover:text-white">Pricing</a></li>
-            <li><a href="roadmap.html" class="hover:text-white">Roadmap</a></li>
+            <li><a href="index.html#features" class="hover:text-white transition">Features</a></li>
+            <li><a href="index.html#pricing" class="hover:text-white transition">Pricing</a></li>
+            <li><a href="roadmap.html" class="hover:text-white transition">Roadmap</a></li>
           </ul>
         </div>
         <div>
           <h4 class="text-xs font-bold tracking-[0.15em] uppercase text-white/70 mb-4">Company</h4>
           <ul class="space-y-2 text-clg-blue20">
-            <li><a href="contact.html" class="hover:text-white">Contact</a></li>
-            <li><a href="privacy.html" class="hover:text-white">Privacy</a></li>
-            <li><a href="terms.html" class="hover:text-white">Terms</a></li>
+            <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+            <li><a href="privacy.html" class="hover:text-white transition">Privacy</a></li>
+            <li><a href="terms.html" class="hover:text-white transition">Terms</a></li>
           </ul>
         </div>
       </div>
@@ -214,6 +234,20 @@
     </div>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const bar = document.getElementById('progressBar');
+    const nav = document.getElementById('navRoot');
+    function onScroll(){
+      const h = document.documentElement;
+      const scrolled = h.scrollTop / Math.max(1,(h.scrollHeight - h.clientHeight));
+      bar.style.width = (scrolled*100).toFixed(2) + '%';
+      if (h.scrollTop > 24) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+    }
+    document.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+    const io = new IntersectionObserver((es)=>{ for(const e of es){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } } }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
 </body>
 </html>

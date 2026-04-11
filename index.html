@@ -7,7 +7,7 @@
   <meta name="description" content="Personalised, verified alerts that keep you safe from missed migrations, forks, protocol changes and scams."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -35,6 +35,9 @@
 </head>
 <body class="antialiased">
 
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress" id="progressBar"></div>
+
   <!-- SVG symbol definitions -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
@@ -48,59 +51,31 @@
           <line x1="42" y1="32" x2="59" y2="32"/>
         </g>
       </symbol>
-      <symbol id="i-bell" viewBox="0 0 24 24">
-        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-          d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 8H4c0-2 2-3 2-8zM10 20a2 2 0 0 0 4 0"/>
-      </symbol>
-      <symbol id="i-shield" viewBox="0 0 24 24">
-        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-          d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3zM9 12l2 2 4-4"/>
-      </symbol>
-      <symbol id="i-clock" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M12 7v5l3 2"/>
-        </g>
-      </symbol>
-      <symbol id="i-spark" viewBox="0 0 24 24">
-        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-          d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/>
-      </symbol>
-      <symbol id="i-wallet" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="6" width="18" height="14" rx="2"/>
-          <path d="M16 13h3M3 10h15a3 3 0 0 0 0-6H6"/>
-        </g>
-      </symbol>
-      <symbol id="i-award" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="9" r="6"/>
-          <path d="M8.5 13.5L7 21l5-3 5 3-1.5-7.5"/>
-        </g>
-      </symbol>
-      <symbol id="i-check" viewBox="0 0 24 24">
-        <path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12l5 5L20 7"/>
-      </symbol>
-      <symbol id="i-arrow" viewBox="0 0 24 24">
-        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7"/>
-      </symbol>
-      <symbol id="i-chev" viewBox="0 0 24 24">
-        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/>
-      </symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 8H4c0-2 2-3 2-8zM10 20a2 2 0 0 0 4 0"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3zM9 12l2 2 4-4"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M16 13h3M3 10h15a3 3 0 0 0 0-6H6"/></g></symbol>
+      <symbol id="i-award" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.5L7 21l5-3 5 3-1.5-7.5"/></g></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12l5 5L20 7"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7"/></symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></g></symbol>
+      <symbol id="i-flash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol>
     </defs>
   </svg>
 
-  <!-- Header -->
-  <header class="absolute top-0 left-0 right-0 z-50">
-    <nav class="container mx-auto flex items-center justify-between py-5 px-6">
+  <!-- Header (sticky, starts transparent on dark hero) -->
+  <header class="nav-root" id="navRoot">
+    <nav class="container mx-auto flex items-center justify-between py-4 px-6">
       <a href="index.html" class="flex items-center gap-3 text-white">
         <svg class="w-8 h-8 text-white"><use href="#logo-mark"/></svg>
-        <span class="font-bold tracking-tight text-[0.95rem] leading-none">
-          <span class="block text-white/70 text-[0.68rem] font-medium tracking-[0.18em] uppercase">Crypto</span>
-          <span class="block text-white uppercase tracking-wider">Lifeguard</span>
+        <span class="font-bold tracking-tight leading-none">
+          <span class="block text-white/70 text-[0.65rem] font-medium tracking-[0.2em] uppercase">Crypto</span>
+          <span class="block text-white uppercase tracking-[0.14em] text-[0.95rem]">Lifeguard</span>
         </span>
       </a>
-      <ul class="hidden md:flex items-center space-x-8">
+      <ul class="hidden md:flex items-center gap-8">
         <li><a href="#features" class="nav-link">Features</a></li>
         <li><a href="#how-it-works" class="nav-link">How it works</a></li>
         <li><a href="#pricing" class="nav-link">Pricing</a></li>
@@ -114,11 +89,15 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+
+    <!-- Subtle lifebuoy pattern -->
     <div class="hero-pattern">
       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="lifebuoyPat" x="0" y="0" width="90" height="90" patternUnits="userSpaceOnUse">
-            <g fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.9">
+            <g fill="none" stroke="#ffffff" stroke-width="1.1" opacity="0.9">
               <circle cx="45" cy="45" r="22"/>
               <circle cx="45" cy="45" r="8"/>
               <line x1="45" y1="23" x2="45" y2="37"/>
@@ -131,155 +110,355 @@
         <rect width="100%" height="100%" fill="url(#lifebuoyPat)"/>
       </svg>
     </div>
-    <div class="relative z-10 container mx-auto px-6 flex flex-col justify-center min-h-[92vh] pt-32 pb-20">
-      <div class="max-w-3xl">
-        <span class="eyebrow eyebrow-light">Verified crypto safety alerts</span>
-        <h1 class="mt-5 text-5xl md:text-7xl font-bold leading-[1.02] tracking-tight text-white">
-          Protect your tokens<br/>before it's too late.
-        </h1>
-        <p class="mt-6 text-lg md:text-xl text-clg-blue20 max-w-2xl leading-relaxed">
-          Personalised, verified alerts keep you safe from missed migrations, forks, protocol changes and scams. No notification fatigue, no hype, just the information you need to act.
-        </p>
-        <div class="mt-9 flex flex-wrap gap-4">
-          <a href="#beta" class="btn-primary">Join the beta <svg class="w-4 h-4"><use href="#i-arrow"/></svg></a>
-          <a href="#how-it-works" class="btn-secondary">See how it works</a>
+
+    <!-- Giant rotating lifebuoy mark -->
+    <div class="lifebuoy-hero" aria-hidden="true">
+      <svg viewBox="0 0 200 200">
+        <defs>
+          <radialGradient id="bouyFill" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#3BB4AD" stop-opacity="0.0"/>
+            <stop offset="60%" stop-color="#1C4E7F" stop-opacity="0.0"/>
+            <stop offset="100%" stop-color="#3BB4AD" stop-opacity="0.35"/>
+          </radialGradient>
+          <linearGradient id="ringStroke" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#C4D3EB"/>
+            <stop offset="100%" stop-color="#3BB4AD"/>
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="99" fill="url(#bouyFill)"/>
+        <g class="lifebuoy-spin" fill="none" stroke="url(#ringStroke)" stroke-linecap="round">
+          <circle cx="100" cy="100" r="82" stroke-width="1.5" opacity=".6" stroke-dasharray="2 6"/>
+          <circle cx="100" cy="100" r="74" stroke-width="2" opacity=".8"/>
+          <circle cx="100" cy="100" r="30" stroke-width="2" opacity=".8"/>
+          <line x1="100" y1="12"  x2="100" y2="52"  stroke-width="4"/>
+          <line x1="100" y1="148" x2="100" y2="188" stroke-width="4"/>
+          <line x1="12"  y1="100" x2="52"  y2="100" stroke-width="4"/>
+          <line x1="148" y1="100" x2="188" y2="100" stroke-width="4"/>
+        </g>
+        <g class="lifebuoy-pulse" fill="none" stroke="#3BB4AD" stroke-width="1" opacity=".3">
+          <circle cx="100" cy="100" r="96"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="relative z-10 container mx-auto px-6 pt-32 pb-20 min-h-[100vh] flex items-center">
+      <div class="grid lg:grid-cols-12 gap-10 items-center w-full">
+        <!-- Left: headline -->
+        <div class="lg:col-span-7">
+          <span class="eyebrow eyebrow-light">
+            <span class="chip chip-live !text-clg-blue20 !bg-white/5 !border !border-white/10" style="text-transform:uppercase;">Live beta</span>
+            Verified crypto safety alerts
+          </span>
+          <h1 class="mt-6 display text-white">
+            Protect your tokens<br/>
+            <span class="grad-text-light">before it's too late.</span>
+          </h1>
+          <p class="mt-7 text-lg md:text-xl text-clg-blue20 max-w-2xl leading-relaxed">
+            Personalised, verified alerts that keep you safe from missed migrations, forks, protocol changes and scams. No notification fatigue. No hype. Just the information you need to act.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-4">
+            <a href="#beta" class="btn-primary">Join the beta <svg class="w-4 h-4"><use href="#i-arrow"/></svg></a>
+            <a href="#how-it-works" class="btn-secondary">See how it works</a>
+          </div>
+
+          <!-- Quick trust row -->
+          <div class="mt-12 stat-row">
+            <div class="stat-cell">
+              <div class="stat-num text-white"><span class="count" data-to="12400" data-suffix="+">0</span></div>
+              <div class="mt-2 text-[0.68rem] text-clg-blue20 uppercase tracking-[0.16em]">Wallets monitored</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-num text-white"><span class="count" data-to="38">0</span><span class="text-white/60 text-lg">M+</span></div>
+              <div class="mt-2 text-[0.68rem] text-clg-blue20 uppercase tracking-[0.16em]">Tokens tracked</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-num text-white"><span class="count" data-to="99.2" data-suffix="%">0</span></div>
+              <div class="mt-2 text-[0.68rem] text-clg-blue20 uppercase tracking-[0.16em]">Signal accuracy</div>
+            </div>
+          </div>
         </div>
-        <div class="mt-10 flex flex-wrap gap-2">
-          <span class="tag"><svg class="w-3.5 h-3.5"><use href="#i-wallet"/></svg> Wallet-aware alerts</span>
-          <span class="tag"><svg class="w-3.5 h-3.5"><use href="#i-shield"/></svg> Dev & team verification</span>
-          <span class="tag"><svg class="w-3.5 h-3.5"><use href="#i-clock"/></svg> Deadline countdowns</span>
-          <span class="tag"><svg class="w-3.5 h-3.5"><use href="#i-spark"/></svg> Weekly AI briefings</span>
+
+        <!-- Right: floating alert stack -->
+        <div class="lg:col-span-5 relative hidden lg:block">
+          <div class="alert-stack ml-auto">
+            <div class="alert-card alert-drop mb-3">
+              <div class="flex items-center justify-between mb-1">
+                <div class="text-xs text-clg-blue20 uppercase tracking-[0.14em] flex items-center"><span class="dot" style="background:#3BB4AD"></span>Dev-verified</div>
+                <div class="text-[0.68rem] text-white/50">2m ago</div>
+              </div>
+              <div class="font-semibold leading-snug">Optimism Bedrock migration deadline in 48h</div>
+              <div class="mt-2 text-xs text-clg-blue20">Affects 1 wallet, 2 tokens · Tap to view official steps</div>
+            </div>
+            <div class="alert-card alert-drop-2 mb-3 ml-8">
+              <div class="flex items-center justify-between mb-1">
+                <div class="text-xs text-clg-blue20 uppercase tracking-[0.14em] flex items-center"><span class="dot" style="background:#C4D3EB"></span>Team-verified</div>
+                <div class="text-[0.68rem] text-white/50">5m ago</div>
+              </div>
+              <div class="font-semibold leading-snug">Arbitrum STIP.b claim window closes Friday</div>
+              <div class="mt-2 text-xs text-clg-blue20">Claim 312 ARB from your eligible wallet</div>
+            </div>
+            <div class="alert-card alert-drop-3 ml-16">
+              <div class="flex items-center justify-between mb-1">
+                <div class="text-xs text-clg-blue20 uppercase tracking-[0.14em] flex items-center"><span class="dot" style="background:#B72B29"></span>Scam detected</div>
+                <div class="text-[0.68rem] text-white/50">just now</div>
+              </div>
+              <div class="font-semibold leading-snug">Lookalike "airdrop" site flagged by community</div>
+              <div class="mt-2 text-xs text-clg-blue20">Do not connect. We've seen 1,208 reports in 6h</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section id="features" class="py-24 bg-white">
+  <!-- MARQUEE (signal ticker) -->
+  <section class="py-8 border-y border-clg-grey10 bg-white">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-item"><svg class="w-4 h-4 text-clg-blue"><use href="#i-check"/></svg> Ethereum Shanghai upgrade reminder sent to 4,218 wallets</span>
+        <span class="marquee-item"><svg class="w-4 h-4 text-clg-blue"><use href="#i-shield"/></svg> Fake Jupiter drainer flagged by 312 contributors</span>
+        <span class="marquee-item"><svg class="w-4 h-4 text-clg-blue"><use href="#i-clock"/></svg> Optimism Bedrock deadline surfaced 72h early</span>
+        <span class="marquee-item"><svg class="w-4 h-4 text-clg-blue"><use href="#i-flash"/></svg> Arbitrum STIP.b claim window broadcast</span>
+        <span class="marquee-item"><svg class="w-4 h-4 text-clg-blue"><use href="#i-bell"/></svg> 118 protocol changes surfaced this week</span>
+        <!-- duplicate for seamless loop -->
+        <span class="marquee-item"><svg class="w-4 h-4 text-clg-blue"><use href="#i-check"/></svg> Ethereum Shanghai upgrade reminder sent to 4,218 wallets</span>
+        <span class="marquee-item"><svg class="w-4 h-4 text-clg-blue"><use href="#i-shield"/></svg> Fake Jupiter drainer flagged by 312 contributors</span>
+        <span class="marquee-item"><svg class="w-4 h-4 text-clg-blue"><use href="#i-clock"/></svg> Optimism Bedrock deadline surfaced 72h early</span>
+        <span class="marquee-item"><svg class="w-4 h-4 text-clg-blue"><use href="#i-flash"/></svg> Arbitrum STIP.b claim window broadcast</span>
+        <span class="marquee-item"><svg class="w-4 h-4 text-clg-blue"><use href="#i-bell"/></svg> 118 protocol changes surfaced this week</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES (bento grid) -->
+  <section id="features" class="py-28 bg-white relative">
     <div class="container mx-auto px-6">
-      <div class="max-w-2xl mb-16">
+      <div class="max-w-2xl mb-14 reveal">
         <span class="eyebrow">Features</span>
-        <h2 class="mt-3 text-4xl md:text-5xl font-bold text-clg-black leading-tight">Built for real people, not bots.</h2>
-        <p class="mt-4 text-clg-grey50 text-lg">Clear language, practical links, and verified paths to act. Every feature is designed to reduce noise and surface what matters.</p>
+        <h2 class="mt-4 text-4xl md:text-6xl font-bold text-clg-black leading-[1.02] tracking-tight">Built for real people, <span class="grad-text">not bots.</span></h2>
+        <p class="mt-5 text-clg-grey50 text-lg leading-relaxed">Clear language, practical links, and verified paths to act. Every feature is designed to reduce noise and surface what matters.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="p-8 bg-white border border-clg-grey10 rounded-2xl lift">
+      <div class="bento">
+        <!-- Big card: personalisation -->
+        <div class="bento-item bento-span-4 bento-row-2 reveal">
           <div class="feature-icon"><svg><use href="#i-bell"/></svg></div>
-          <h3 class="text-xl font-bold mb-2">No notification fatigue</h3>
-          <p class="text-clg-grey50 leading-relaxed">Alerts are tailored to your connected wallets and watchlist. If you don't hold it, you won't be pinged.</p>
-          <div class="mt-5"><span class="chip">Personalised</span></div>
-        </article>
+          <h3 class="text-2xl md:text-3xl font-bold mb-3 text-clg-black">No notification fatigue.</h3>
+          <p class="text-clg-grey50 leading-relaxed max-w-lg">Alerts are tailored to your connected wallets and watchlist. If you don't hold it, you won't be pinged. Severity is colour-coded so you can triage at a glance.</p>
+          <!-- mini list of fake wallets -->
+          <div class="mt-8 space-y-2 max-w-md">
+            <div class="flex items-center justify-between px-4 py-3 rounded-xl bg-clg-grey10/60">
+              <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded-full bg-clg-blue text-white flex items-center justify-center text-xs font-bold">E</div>
+                <div class="text-sm"><span class="font-semibold text-clg-black">Vault · Main</span><span class="block text-xs text-clg-grey50">0x34f2…a9c1 · Ethereum</span></div>
+              </div>
+              <span class="chip">3 alerts</span>
+            </div>
+            <div class="flex items-center justify-between px-4 py-3 rounded-xl bg-clg-grey10/60">
+              <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded-full bg-clg-green text-white flex items-center justify-center text-xs font-bold">S</div>
+                <div class="text-sm"><span class="font-semibold text-clg-black">Trading</span><span class="block text-xs text-clg-grey50">4gFc…TL8 · Solana</span></div>
+              </div>
+              <span class="chip chip-live">1 live</span>
+            </div>
+            <div class="flex items-center justify-between px-4 py-3 rounded-xl bg-clg-grey10/60">
+              <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded-full bg-clg-grey100 text-white flex items-center justify-center text-xs font-bold">B</div>
+                <div class="text-sm"><span class="font-semibold text-clg-black">Cold</span><span class="block text-xs text-clg-grey50">0x9c7a…ff34 · Base</span></div>
+              </div>
+              <span class="chip">Quiet</span>
+            </div>
+          </div>
+        </div>
 
-        <article class="p-8 bg-white border border-clg-grey10 rounded-2xl lift">
+        <!-- Verification -->
+        <div class="bento-item bento-span-2 reveal delay-1">
           <div class="feature-icon"><svg><use href="#i-shield"/></svg></div>
-          <h3 class="text-xl font-bold mb-2">Trusted by design</h3>
-          <p class="text-clg-grey50 leading-relaxed">Token-gated posting, stake to up- or down-vote, dev and team verification badges, and consensus highlights.</p>
-          <div class="mt-5"><span class="chip">Bot-resistant</span></div>
-        </article>
+          <h3 class="text-xl font-bold mb-2 text-clg-black">Trusted by design.</h3>
+          <p class="text-clg-grey50 leading-relaxed text-sm">Token-gated posting, stake to vote, dev and team verification badges, and consensus highlights.</p>
+        </div>
 
-        <article class="p-8 bg-white border border-clg-grey10 rounded-2xl lift">
+        <!-- Countdown -->
+        <div class="bento-item bento-span-2 reveal delay-2">
           <div class="feature-icon"><svg><use href="#i-clock"/></svg></div>
-          <h3 class="text-xl font-bold mb-2">Countdown to deadlines</h3>
-          <p class="text-clg-grey50 leading-relaxed">Time-sensitive bars and alerts for migrations and cut-offs so you never miss critical changes.</p>
-          <div class="mt-5"><span class="chip">Actionable</span></div>
-        </article>
+          <h3 class="text-xl font-bold mb-2 text-clg-black">Countdown to deadlines.</h3>
+          <p class="text-clg-grey50 leading-relaxed text-sm">Time-sensitive bars and reminders so you never miss a cut-off.</p>
+        </div>
 
-        <article class="p-8 bg-white border border-clg-grey10 rounded-2xl lift">
+        <!-- Wallet / secure (dark) -->
+        <div class="bento-item bento-dark bento-span-3 reveal delay-1">
+          <div class="feature-icon feature-icon-dark"><svg><use href="#i-wallet"/></svg></div>
+          <h3 class="text-xl font-bold mb-2">Read-only by default.</h3>
+          <p class="text-sm leading-relaxed">Monitor risk across ecosystems without ever sharing seed phrases or private keys. We only read balances to personalise alerts.</p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="tag">Ethereum</span>
+            <span class="tag">Solana</span>
+            <span class="tag">Base</span>
+            <span class="tag">Arbitrum</span>
+            <span class="tag">+ more</span>
+          </div>
+        </div>
+
+        <!-- Briefings -->
+        <div class="bento-item bento-span-3 reveal delay-2">
           <div class="feature-icon"><svg><use href="#i-spark"/></svg></div>
-          <h3 class="text-xl font-bold mb-2">Weekly AI briefings</h3>
-          <p class="text-clg-grey50 leading-relaxed">A concise Sunday briefing personalised to your holdings. Available on Premium and above.</p>
-          <div class="mt-5"><span class="chip">Proactive</span></div>
-        </article>
+          <h3 class="text-xl font-bold mb-2 text-clg-black">Weekly AI briefings.</h3>
+          <p class="text-clg-grey50 leading-relaxed text-sm">A concise Sunday digest of what changed, what's coming and what you need to act on. Personalised to your holdings.</p>
+          <div class="mt-5 text-xs text-clg-grey50 flex items-center gap-2"><span class="chip">Premium +</span> every Sunday, 9am local</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <article class="p-8 bg-white border border-clg-grey10 rounded-2xl lift">
-          <div class="feature-icon"><svg><use href="#i-wallet"/></svg></div>
-          <h3 class="text-xl font-bold mb-2">Multi-chain tracking</h3>
-          <p class="text-clg-grey50 leading-relaxed">Connect wallets (read-only) to monitor risk across ecosystems without ever sharing private keys.</p>
-          <div class="mt-5"><span class="chip">Secure</span></div>
-        </article>
+  <!-- HOW IT WORKS (live demo) -->
+  <section id="how-it-works" class="py-28 grad-deep-blue text-white relative overflow-hidden">
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-14 items-start">
+        <div class="lg:col-span-6 reveal">
+          <span class="eyebrow eyebrow-light">How it works</span>
+          <h2 class="mt-4 text-4xl md:text-6xl font-bold leading-[1.02] tracking-tight">Three steps to <span class="grad-text-light">safer crypto.</span></h2>
+          <p class="mt-5 text-clg-blue20 text-lg leading-relaxed max-w-lg">Set it once, stay safe forever. Every alert comes with verified links to take action and a checklist so you never miss a step.</p>
 
-        <article class="p-8 bg-white border border-clg-grey10 rounded-2xl lift">
-          <div class="feature-icon"><svg><use href="#i-award"/></svg></div>
-          <h3 class="text-xl font-bold mb-2">Earn while you help</h3>
-          <p class="text-clg-grey50 leading-relaxed">Post useful alpha, verify news, or spot scams to earn points and $GUARD rewards.</p>
-          <div class="mt-5"><span class="chip">Rewarding</span></div>
-        </article>
+          <ol class="mt-10 space-y-6">
+            <li class="flex gap-5 reveal delay-1">
+              <div class="w-11 h-11 shrink-0 rounded-xl bg-white/8 border border-white/15 flex items-center justify-center font-bold">01</div>
+              <div>
+                <h3 class="text-xl font-bold">Connect wallets (read-only)</h3>
+                <p class="text-clg-blue20 mt-1 leading-relaxed">We scan balances only, never sign. Or use a watchlist for total privacy.</p>
+              </div>
+            </li>
+            <li class="flex gap-5 reveal delay-2">
+              <div class="w-11 h-11 shrink-0 rounded-xl bg-white/8 border border-white/15 flex items-center justify-center font-bold">02</div>
+              <div>
+                <h3 class="text-xl font-bold">Get relevant alerts</h3>
+                <p class="text-clg-blue20 mt-1 leading-relaxed">Only for tokens you hold. Severity and countdowns indicate urgency with verified action links.</p>
+              </div>
+            </li>
+            <li class="flex gap-5 reveal delay-3">
+              <div class="w-11 h-11 shrink-0 rounded-xl bg-white/8 border border-white/15 flex items-center justify-center font-bold">03</div>
+              <div>
+                <h3 class="text-xl font-bold">Contribute and earn</h3>
+                <p class="text-clg-blue20 mt-1 leading-relaxed">Stake $GUARD to comment or vote. Post verified info to earn rewards when the community confirms.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Phone mock -->
+        <div class="lg:col-span-6 flex justify-center lg:justify-end reveal delay-2">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="phone-time"><span>9:41</span><span>CLG</span></div>
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-clg-green"><use href="#logo-mark"/></svg>
+                <div class="text-xs text-clg-blue20 uppercase tracking-[0.14em]">Crypto Lifeguard</div>
+              </div>
+              <div class="phone-alert a1">
+                <div class="flex items-center justify-between mb-1">
+                  <div class="text-[0.65rem] uppercase tracking-[0.12em] text-clg-blue20 flex items-center"><span class="dot" style="background:#B72B29"></span>High severity</div>
+                  <div class="text-[0.6rem] text-white/50">now</div>
+                </div>
+                <div class="text-sm font-semibold leading-snug">Scam site flagged for $PEPE claim</div>
+                <div class="text-[0.68rem] text-clg-blue20 mt-1">Do not connect. 1,208 reports in 6h</div>
+              </div>
+              <div class="phone-alert a2">
+                <div class="flex items-center justify-between mb-1">
+                  <div class="text-[0.65rem] uppercase tracking-[0.12em] text-clg-blue20 flex items-center"><span class="dot" style="background:#3BB4AD"></span>Dev-verified</div>
+                  <div class="text-[0.6rem] text-white/50">2m</div>
+                </div>
+                <div class="text-sm font-semibold leading-snug">Optimism migration in 48h</div>
+                <div class="text-[0.68rem] text-clg-blue20 mt-1">Affects Vault · Main · 2 tokens</div>
+              </div>
+              <div class="phone-alert a3">
+                <div class="flex items-center justify-between mb-1">
+                  <div class="text-[0.65rem] uppercase tracking-[0.12em] text-clg-blue20 flex items-center"><span class="dot" style="background:#C4D3EB"></span>Team-verified</div>
+                  <div class="text-[0.6rem] text-white/50">5m</div>
+                </div>
+                <div class="text-sm font-semibold leading-snug">Arbitrum STIP.b claim ends Friday</div>
+                <div class="text-[0.68rem] text-clg-blue20 mt-1">312 ARB eligible · Trading wallet</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- VERIFICATION -->
-  <section class="py-24" style="background:#E1E8F0;">
-    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-14">
-      <div>
+  <section class="py-28" style="background:#F4F7FB;">
+    <div class="container mx-auto px-6 grid lg:grid-cols-12 gap-14">
+      <div class="lg:col-span-6 reveal">
         <span class="eyebrow">Verification</span>
-        <h2 class="mt-3 text-4xl font-bold mb-5 text-clg-black">Verification you can see.</h2>
-        <p class="mb-6 text-clg-grey100 leading-relaxed text-lg">Badges show who verified what. Stake to express confidence and earn rewards when the truth is confirmed.</p>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3"><span class="mt-1 w-5 h-5 rounded-full bg-clg-blue text-white flex items-center justify-center shrink-0"><svg class="w-3 h-3"><use href="#i-check"/></svg></span><span><strong class="text-clg-black">Team-verified</strong> by the Crypto Lifeguard team</span></li>
-          <li class="flex items-start gap-3"><span class="mt-1 w-5 h-5 rounded-full bg-clg-blue text-white flex items-center justify-center shrink-0"><svg class="w-3 h-3"><use href="#i-check"/></svg></span><span><strong class="text-clg-black">Dev-verified</strong> confirmations from project teams</span></li>
-          <li class="flex items-start gap-3"><span class="mt-1 w-5 h-5 rounded-full bg-clg-blue text-white flex items-center justify-center shrink-0"><svg class="w-3 h-3"><use href="#i-check"/></svg></span><span><strong class="text-clg-black">Community consensus</strong> highlighted at the top</span></li>
+        <h2 class="mt-4 text-4xl md:text-5xl font-bold leading-tight text-clg-black">Verification you can <span class="grad-text">see.</span></h2>
+        <p class="mt-5 text-clg-grey50 text-lg leading-relaxed">Badges show who verified what. Stake to express confidence and earn rewards when the truth is confirmed. Consensus moves the strongest signals to the top automatically.</p>
+        <ul class="mt-8 space-y-3">
+          <li class="flex items-start gap-3"><span class="mt-1 w-5 h-5 rounded-full bg-clg-blue text-white flex items-center justify-center shrink-0"><svg class="w-3 h-3"><use href="#i-check"/></svg></span><span><strong class="text-clg-black">Team-verified</strong> checks by the Crypto Lifeguard team</span></li>
+          <li class="flex items-start gap-3"><span class="mt-1 w-5 h-5 rounded-full bg-clg-blue text-white flex items-center justify-center shrink-0"><svg class="w-3 h-3"><use href="#i-check"/></svg></span><span><strong class="text-clg-black">Dev-verified</strong> confirmations signed by project teams</span></li>
+          <li class="flex items-start gap-3"><span class="mt-1 w-5 h-5 rounded-full bg-clg-blue text-white flex items-center justify-center shrink-0"><svg class="w-3 h-3"><use href="#i-check"/></svg></span><span><strong class="text-clg-black">Community consensus</strong> surfaced at the top</span></li>
         </ul>
       </div>
-      <div>
-        <span class="eyebrow">Designed for real people</span>
-        <h2 class="mt-3 text-4xl font-bold mb-5 text-clg-black">No hype, no spam.</h2>
-        <p class="mb-6 text-clg-grey100 leading-relaxed text-lg">Clear language, practical links, and verified paths to act. Just the information you need to stay safe.</p>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3"><span class="mt-1 w-5 h-5 rounded-full bg-clg-blue text-white flex items-center justify-center shrink-0"><svg class="w-3 h-3"><use href="#i-check"/></svg></span><span>Official migration links surfaced</span></li>
-          <li class="flex items-start gap-3"><span class="mt-1 w-5 h-5 rounded-full bg-clg-blue text-white flex items-center justify-center shrink-0"><svg class="w-3 h-3"><use href="#i-check"/></svg></span><span>Step-by-step checklists for every action</span></li>
-          <li class="flex items-start gap-3"><span class="mt-1 w-5 h-5 rounded-full bg-clg-blue text-white flex items-center justify-center shrink-0"><svg class="w-3 h-3"><use href="#i-check"/></svg></span><span>Reward notifications when your alpha helps others</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="how-it-works" class="py-24 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="max-w-2xl mb-16">
-        <span class="eyebrow">How it works</span>
-        <h2 class="mt-3 text-4xl md:text-5xl font-bold text-clg-black leading-tight">Three steps to safer crypto.</h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-8 border border-clg-grey10 rounded-2xl lift">
-          <div class="text-clg-blue font-bold text-sm tracking-[0.2em]">STEP 01</div>
-          <h3 class="text-2xl font-bold mt-3 mb-3 text-clg-black">Connect wallet(s)</h3>
-          <p class="text-clg-grey50 leading-relaxed">We scan your holdings read-only to tailor alerts. Add a watchlist if you prefer not to connect.</p>
+      <div class="lg:col-span-6 reveal delay-2">
+        <!-- Verified alert card preview -->
+        <div class="bg-white border border-clg-grey10 rounded-2xl p-6 shadow-[0_20px_60px_-20px_rgba(20,32,46,0.18)]">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-xl bg-clg-grey10 flex items-center justify-center text-clg-blue"><svg class="w-5 h-5"><use href="#i-shield"/></svg></div>
+              <div>
+                <div class="text-sm font-bold text-clg-black">Optimism Bedrock migration</div>
+                <div class="text-xs text-clg-grey50">posted by @op_labs · 2h ago</div>
+              </div>
+            </div>
+            <span class="chip chip-live">Dev-verified</span>
+          </div>
+          <p class="text-clg-grey100 text-sm leading-relaxed">Legacy OP tokens must be migrated by 12:00 UTC, Friday. Bridge closes immediately after. Follow the official link below to migrate.</p>
+          <div class="mt-4 pt-4 border-t border-clg-grey10 flex items-center justify-between text-xs text-clg-grey50">
+            <div class="flex items-center gap-4">
+              <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-clg-green"><use href="#i-check"/></svg>312 stakes</span>
+              <span class="flex items-center gap-1.5"><svg class="w-4 h-4"><use href="#i-clock"/></svg>46h left</span>
+            </div>
+            <a href="#" class="text-clg-blue font-bold">View action steps →</a>
+          </div>
         </div>
-        <div class="p-8 border border-clg-grey10 rounded-2xl lift">
-          <div class="text-clg-blue font-bold text-sm tracking-[0.2em]">STEP 02</div>
-          <h3 class="text-2xl font-bold mt-3 mb-3 text-clg-black">Get relevant alerts</h3>
-          <p class="text-clg-grey50 leading-relaxed">Only for tokens you hold. Severity and countdowns indicate urgency, with verified links to act.</p>
-        </div>
-        <div class="p-8 border border-clg-grey10 rounded-2xl lift">
-          <div class="text-clg-blue font-bold text-sm tracking-[0.2em]">STEP 03</div>
-          <h3 class="text-2xl font-bold mt-3 mb-3 text-clg-black">Contribute & earn</h3>
-          <p class="text-clg-grey50 leading-relaxed">Stake $GUARD to comment or vote. Post useful alpha and share verified info to earn rewards.</p>
+        <!-- Stake bar -->
+        <div class="mt-6 bg-white border border-clg-grey10 rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-3">
+            <div class="text-xs font-bold text-clg-grey50 uppercase tracking-[0.14em]">Community confidence</div>
+            <div class="text-sm font-bold text-clg-blue">98.7%</div>
+          </div>
+          <div class="h-2 rounded-full bg-clg-grey10 overflow-hidden">
+            <div class="h-full rounded-full" style="width:98.7%;background:linear-gradient(90deg,#1C4E7F,#3BB4AD);"></div>
+          </div>
+          <div class="mt-3 flex items-center justify-between text-xs text-clg-grey50">
+            <span>4,218 stakers</span>
+            <span>51,294 $GUARD</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- B2B -->
-  <section class="py-24 grad-metal text-white">
+  <section class="py-28 grad-metal text-white relative overflow-hidden">
     <div class="container mx-auto px-6">
-      <div class="max-w-2xl mb-14">
-        <span class="eyebrow eyebrow-light">For teams & platforms</span>
-        <h2 class="mt-3 text-4xl md:text-5xl font-bold leading-tight">Enterprise-ready integrations.</h2>
-        <p class="mt-4 text-clg-blue20 text-lg leading-relaxed">APIs for wallets and exchanges, dev-verified broadcast channels, and enterprise exploit monitoring.</p>
+      <div class="max-w-2xl mb-14 reveal">
+        <span class="eyebrow eyebrow-light">For teams and platforms</span>
+        <h2 class="mt-4 text-4xl md:text-6xl font-bold leading-[1.02] tracking-tight">Enterprise-ready <span class="grad-text-light">integrations.</span></h2>
+        <p class="mt-5 text-clg-blue20 text-lg leading-relaxed">APIs for wallets and exchanges, dev-verified broadcast channels, and enterprise exploit monitoring.</p>
       </div>
-      <div class="grid md:grid-cols-3 gap-6 mb-10">
-        <div class="p-7 rounded-2xl border border-white/15 bg-white/5 backdrop-blur">
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="p-7 rounded-2xl border border-white/15 bg-white/5 backdrop-blur reveal delay-1">
+          <div class="feature-icon feature-icon-dark"><svg><use href="#i-globe"/></svg></div>
           <h3 class="font-bold text-lg mb-2">White-label alerts API</h3>
-          <p class="text-clg-blue20 text-sm leading-relaxed">Embed verified, wallet-aware alerts directly into your product.</p>
+          <p class="text-clg-blue20 text-sm leading-relaxed">Embed verified, wallet-aware alerts directly into your product with a few lines of JSON.</p>
         </div>
-        <div class="p-7 rounded-2xl border border-white/15 bg-white/5 backdrop-blur">
+        <div class="p-7 rounded-2xl border border-white/15 bg-white/5 backdrop-blur reveal delay-2">
+          <div class="feature-icon feature-icon-dark"><svg><use href="#i-spark"/></svg></div>
           <h3 class="font-bold text-lg mb-2">Project broadcast portal</h3>
           <p class="text-clg-blue20 text-sm leading-relaxed">Reach verified holders directly with authenticated, high-signal messaging.</p>
         </div>
-        <div class="p-7 rounded-2xl border border-white/15 bg-white/5 backdrop-blur">
+        <div class="p-7 rounded-2xl border border-white/15 bg-white/5 backdrop-blur reveal delay-3">
+          <div class="feature-icon feature-icon-dark"><svg><use href="#i-shield"/></svg></div>
           <h3 class="font-bold text-lg mb-2">Enterprise dashboards</h3>
           <p class="text-clg-blue20 text-sm leading-relaxed">Monitor exploits and incidents across portfolios with role-based access.</p>
         </div>
@@ -289,19 +468,19 @@
   </section>
 
   <!-- PRICING -->
-  <section id="pricing" class="py-24 bg-white">
+  <section id="pricing" class="py-28 bg-white">
     <div class="container mx-auto px-6">
-      <div class="max-w-2xl mb-14">
+      <div class="max-w-2xl mb-14 reveal">
         <span class="eyebrow">Pricing</span>
-        <h2 class="mt-3 text-4xl md:text-5xl font-bold text-clg-black leading-tight">Simple, transparent pricing.</h2>
-        <p class="mt-4 text-clg-grey50 text-lg">Save 40% with the $GUARD token on paid plans.</p>
+        <h2 class="mt-4 text-4xl md:text-6xl font-bold leading-[1.02] tracking-tight text-clg-black">Simple, transparent <span class="grad-text">pricing.</span></h2>
+        <p class="mt-5 text-clg-grey50 text-lg">Save 40% with the $GUARD token on paid plans.</p>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-8 border border-clg-grey10 rounded-2xl lift bg-white">
+        <div class="bento-item reveal delay-1">
           <h3 class="text-sm font-bold text-clg-grey50 tracking-[0.15em] uppercase mb-3">Free</h3>
-          <p class="text-4xl font-bold text-clg-black mb-1">£0<span class="text-base font-medium text-clg-grey50">/mo</span></p>
-          <p class="text-clg-grey50 text-sm mb-6">For getting started</p>
-          <ul class="space-y-3 mb-8 text-clg-black">
+          <p class="text-5xl font-bold text-clg-black mb-1">£0<span class="text-base font-medium text-clg-grey50">/mo</span></p>
+          <p class="text-clg-grey50 text-sm mb-7">For getting started</p>
+          <ul class="space-y-3 mb-8 text-clg-black text-sm">
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0"><use href="#i-check"/></svg>3 wallets</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0"><use href="#i-check"/></svg>Basic alerts</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0"><use href="#i-check"/></svg>Verification badges (read-only)</li>
@@ -309,24 +488,24 @@
           <a href="#beta" class="btn-ghost w-full justify-center">Get started</a>
         </div>
 
-        <div class="p-8 border-2 border-clg-blue rounded-2xl bg-white relative lift">
-          <div class="absolute -top-3 left-6 bg-clg-blue text-white text-[0.7rem] font-bold tracking-[0.12em] uppercase px-3 py-1 rounded-full">Most popular</div>
-          <h3 class="text-sm font-bold text-clg-blue tracking-[0.15em] uppercase mb-3">Premium</h3>
-          <p class="text-4xl font-bold text-clg-black mb-1">£2.99<span class="text-base font-medium text-clg-grey50">/mo</span></p>
-          <p class="text-clg-grey50 text-sm mb-6"><span class="line-through">£4.99</span> with $GUARD</p>
-          <ul class="space-y-3 mb-8 text-clg-black">
-            <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0"><use href="#i-check"/></svg>Unlimited wallets</li>
-            <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0"><use href="#i-check"/></svg>Weekly AI briefings</li>
-            <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0"><use href="#i-check"/></svg>Community feed access</li>
+        <div class="bento-item bento-dark relative reveal delay-2">
+          <div class="absolute -top-3 left-6 bg-clg-green text-white text-[0.68rem] font-bold tracking-[0.14em] uppercase px-3 py-1 rounded-full">Most popular</div>
+          <h3 class="text-sm font-bold text-clg-blue20 tracking-[0.15em] uppercase mb-3">Premium</h3>
+          <p class="text-5xl font-bold text-white mb-1">£2.99<span class="text-base font-medium text-clg-blue20">/mo</span></p>
+          <p class="text-clg-blue20 text-sm mb-7"><span class="line-through opacity-70">£4.99</span> with $GUARD</p>
+          <ul class="space-y-3 mb-8 text-white text-sm">
+            <li class="flex gap-2"><svg class="w-5 h-5 text-clg-green shrink-0"><use href="#i-check"/></svg>Unlimited wallets</li>
+            <li class="flex gap-2"><svg class="w-5 h-5 text-clg-green shrink-0"><use href="#i-check"/></svg>Weekly AI briefings</li>
+            <li class="flex gap-2"><svg class="w-5 h-5 text-clg-green shrink-0"><use href="#i-check"/></svg>Community feed access</li>
           </ul>
-          <a href="#beta" class="btn-primary w-full justify-center">Start Premium</a>
+          <a href="#beta" class="btn-primary w-full justify-center" style="background:#3BB4AD;">Start Premium</a>
         </div>
 
-        <div class="p-8 border border-clg-grey10 rounded-2xl lift bg-white">
+        <div class="bento-item reveal delay-3">
           <h3 class="text-sm font-bold text-clg-grey50 tracking-[0.15em] uppercase mb-3">Pro</h3>
-          <p class="text-4xl font-bold text-clg-black mb-1">£5.99<span class="text-base font-medium text-clg-grey50">/mo</span></p>
-          <p class="text-clg-grey50 text-sm mb-6"><span class="line-through">£9.99</span> with $GUARD</p>
-          <ul class="space-y-3 mb-8 text-clg-black">
+          <p class="text-5xl font-bold text-clg-black mb-1">£5.99<span class="text-base font-medium text-clg-grey50">/mo</span></p>
+          <p class="text-clg-grey50 text-sm mb-7"><span class="line-through">£9.99</span> with $GUARD</p>
+          <ul class="space-y-3 mb-8 text-clg-black text-sm">
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0"><use href="#i-check"/></svg>DeFi alerts</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0"><use href="#i-check"/></svg>CSV exports</li>
             <li class="flex gap-2"><svg class="w-5 h-5 text-clg-blue shrink-0"><use href="#i-check"/></svg>Priority support</li>
@@ -334,25 +513,26 @@
           <a href="#beta" class="btn-ghost w-full justify-center">Go Pro</a>
         </div>
       </div>
-      <p class="text-center mt-10 text-clg-grey50">We never ask for seed phrases. Read-only connections only.</p>
+      <p class="text-center mt-10 text-clg-grey50 text-sm">We never ask for seed phrases. Read-only connections only.</p>
     </div>
   </section>
 
   <!-- BETA -->
-  <section id="beta" class="py-24 grad-deep-blue text-white relative overflow-hidden">
+  <section id="beta" class="py-28 grad-deep-blue text-white relative overflow-hidden">
+    <div class="blob blob-a" style="top:-80px;right:-120px;opacity:.45"></div>
     <div class="container mx-auto px-6 relative z-10">
       <div class="grid md:grid-cols-2 gap-14 items-start">
-        <div>
+        <div class="reveal">
           <span class="eyebrow eyebrow-light">Early access</span>
-          <h2 class="mt-3 text-4xl md:text-5xl font-bold leading-tight">Join the beta.</h2>
-          <p class="mt-4 text-clg-blue20 text-lg leading-relaxed">Be first in line. We'll email you when invites roll out.</p>
+          <h2 class="mt-4 text-4xl md:text-6xl font-bold leading-[1.02] tracking-tight">Join the <span class="grad-text-light">beta.</span></h2>
+          <p class="mt-5 text-clg-blue20 text-lg leading-relaxed">Be first in line. We'll email you when invites roll out.</p>
           <div class="mt-8 space-y-3">
             <div class="flex items-start gap-3"><svg class="w-5 h-5 text-clg-green mt-0.5 shrink-0"><use href="#i-check"/></svg><span>Beta airdrop for top contributors</span></div>
             <div class="flex items-start gap-3"><svg class="w-5 h-5 text-clg-green mt-0.5 shrink-0"><use href="#i-check"/></svg><span>40% token discount on Premium and Pro</span></div>
             <div class="flex items-start gap-3"><svg class="w-5 h-5 text-clg-green mt-0.5 shrink-0"><use href="#i-check"/></svg><span>Help shape features before launch</span></div>
           </div>
         </div>
-        <form class="bg-white text-clg-black rounded-2xl p-8 shadow-2xl">
+        <form class="bg-white text-clg-black rounded-2xl p-8 shadow-2xl reveal delay-2">
           <label class="block">
             <span class="block text-sm font-bold mb-2">Email</span>
             <input type="email" placeholder="you@example.com" class="w-full p-3 rounded-lg border border-clg-grey10 focus:outline-none focus:border-clg-blue focus:ring-2 focus:ring-clg-blue/20"/>
@@ -373,55 +553,55 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="py-24 bg-white">
+  <section id="faq" class="py-28 bg-white">
     <div class="container mx-auto px-6 max-w-3xl">
-      <div class="mb-12 text-center">
+      <div class="mb-12 text-center reveal">
         <span class="eyebrow">FAQ</span>
-        <h2 class="mt-3 text-4xl md:text-5xl font-bold text-clg-black leading-tight">Questions, answered.</h2>
+        <h2 class="mt-4 text-4xl md:text-6xl font-bold leading-[1.02] tracking-tight text-clg-black">Questions, <span class="grad-text">answered.</span></h2>
       </div>
       <div class="space-y-3">
-        <details class="group bg-white border border-clg-grey10 rounded-xl p-5 hover:border-clg-blue transition">
-          <summary class="flex justify-between items-center cursor-pointer font-bold text-clg-black list-none">
+        <details class="group bg-white border border-clg-grey10 rounded-2xl p-6 hover:border-clg-blue transition reveal">
+          <summary class="flex justify-between items-center cursor-pointer font-bold text-clg-black">
             Do you ever ask for seed phrases or private keys?
             <svg class="w-5 h-5 chev text-clg-grey50"><use href="#i-chev"/></svg>
           </summary>
-          <p class="mt-3 text-clg-grey50 leading-relaxed">Never. Connections are read-only. We'll only ask for standard wallet permissions to view balances for alert personalisation.</p>
+          <p class="mt-4 text-clg-grey50 leading-relaxed">Never. Connections are read-only. We only ask for standard wallet permissions to view balances for alert personalisation.</p>
         </details>
-        <details class="group bg-white border border-clg-grey10 rounded-xl p-5 hover:border-clg-blue transition">
-          <summary class="flex justify-between items-center cursor-pointer font-bold text-clg-black list-none">
+        <details class="group bg-white border border-clg-grey10 rounded-2xl p-6 hover:border-clg-blue transition reveal delay-1">
+          <summary class="flex justify-between items-center cursor-pointer font-bold text-clg-black">
             What blockchains are supported?
             <svg class="w-5 h-5 chev text-clg-grey50"><use href="#i-chev"/></svg>
           </summary>
-          <p class="mt-3 text-clg-grey50 leading-relaxed">We're starting with majors like Ethereum and Solana, and expanding based on demand.</p>
+          <p class="mt-4 text-clg-grey50 leading-relaxed">We're starting with majors like Ethereum, Solana, Base, and Arbitrum, then expanding based on demand.</p>
         </details>
-        <details class="group bg-white border border-clg-grey10 rounded-xl p-5 hover:border-clg-blue transition">
-          <summary class="flex justify-between items-center cursor-pointer font-bold text-clg-black list-none">
+        <details class="group bg-white border border-clg-grey10 rounded-2xl p-6 hover:border-clg-blue transition reveal delay-2">
+          <summary class="flex justify-between items-center cursor-pointer font-bold text-clg-black">
             How do rewards work?
             <svg class="w-5 h-5 chev text-clg-grey50"><use href="#i-chev"/></svg>
           </summary>
-          <p class="mt-3 text-clg-grey50 leading-relaxed">Post useful alpha, verify news, or flag scams to earn points. Points convert to $GUARD periodically, with higher-quality contributions earning more.</p>
+          <p class="mt-4 text-clg-grey50 leading-relaxed">Post useful alpha, verify news, or flag scams to earn points. Points convert to $GUARD periodically, with higher-quality contributions earning more.</p>
         </details>
-        <details class="group bg-white border border-clg-grey10 rounded-xl p-5 hover:border-clg-blue transition">
-          <summary class="flex justify-between items-center cursor-pointer font-bold text-clg-black list-none">
+        <details class="group bg-white border border-clg-grey10 rounded-2xl p-6 hover:border-clg-blue transition reveal delay-3">
+          <summary class="flex justify-between items-center cursor-pointer font-bold text-clg-black">
             What makes verification trustworthy?
             <svg class="w-5 h-5 chev text-clg-grey50"><use href="#i-chev"/></svg>
           </summary>
-          <p class="mt-3 text-clg-grey50 leading-relaxed">A layered model: dev confirmations, Crypto Lifeguard team checks, and token-backed community consensus. Items with the strongest alignment surface first.</p>
+          <p class="mt-4 text-clg-grey50 leading-relaxed">A layered model: dev confirmations, Crypto Lifeguard team checks, and token-backed community consensus. Items with the strongest alignment surface first.</p>
         </details>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="pattern-bg text-white pt-20 pb-10">
+  <footer class="pattern-bg text-white pt-24 pb-10">
     <div class="container mx-auto px-6">
       <div class="grid md:grid-cols-4 gap-10 pb-14 border-b border-white/10">
         <div class="md:col-span-2">
           <div class="flex items-center gap-3 mb-5">
             <svg class="w-10 h-10 text-white"><use href="#logo-mark"/></svg>
             <span class="font-bold tracking-tight text-white leading-none">
-              <span class="block text-white/70 text-[0.68rem] font-medium tracking-[0.18em] uppercase">Crypto</span>
-              <span class="block uppercase tracking-wider">Lifeguard</span>
+              <span class="block text-white/70 text-[0.65rem] font-medium tracking-[0.2em] uppercase">Crypto</span>
+              <span class="block uppercase tracking-[0.14em]">Lifeguard</span>
             </span>
           </div>
           <p class="text-clg-blue20 max-w-md leading-relaxed">Protecting everyday crypto users with actionable, verified alerts. No hype, no spam, just signal.</p>
@@ -429,17 +609,17 @@
         <div>
           <h4 class="text-xs font-bold tracking-[0.15em] uppercase text-white/70 mb-4">Product</h4>
           <ul class="space-y-2 text-clg-blue20">
-            <li><a href="#features" class="hover:text-white">Features</a></li>
-            <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
-            <li><a href="roadmap.html" class="hover:text-white">Roadmap</a></li>
+            <li><a href="#features" class="hover:text-white transition">Features</a></li>
+            <li><a href="#pricing" class="hover:text-white transition">Pricing</a></li>
+            <li><a href="roadmap.html" class="hover:text-white transition">Roadmap</a></li>
           </ul>
         </div>
         <div>
           <h4 class="text-xs font-bold tracking-[0.15em] uppercase text-white/70 mb-4">Company</h4>
           <ul class="space-y-2 text-clg-blue20">
-            <li><a href="contact.html" class="hover:text-white">Contact</a></li>
-            <li><a href="privacy.html" class="hover:text-white">Privacy</a></li>
-            <li><a href="terms.html" class="hover:text-white">Terms</a></li>
+            <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+            <li><a href="privacy.html" class="hover:text-white transition">Privacy</a></li>
+            <li><a href="terms.html" class="hover:text-white transition">Terms</a></li>
           </ul>
         </div>
       </div>
@@ -447,6 +627,50 @@
     </div>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --- Scroll progress bar ---
+    const bar = document.getElementById('progressBar');
+    const nav = document.getElementById('navRoot');
+    function onScroll(){
+      const h = document.documentElement;
+      const scrolled = h.scrollTop / Math.max(1,(h.scrollHeight - h.clientHeight));
+      bar.style.width = (scrolled*100).toFixed(2) + '%';
+      if (h.scrollTop > 24) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+    }
+    document.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+
+    // --- Reveal on scroll ---
+    const io = new IntersectionObserver((entries)=>{
+      for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }
+    }, { threshold: 0.12, rootMargin:'0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // --- Count-up numbers ---
+    const counted = new WeakSet();
+    const countIO = new IntersectionObserver((entries)=>{
+      for(const e of entries){
+        if(!e.isIntersecting || counted.has(e.target)) continue;
+        counted.add(e.target);
+        const el = e.target;
+        const to = parseFloat(el.dataset.to || '0');
+        const suffix = el.dataset.suffix || '';
+        const start = performance.now();
+        const dur = 1500;
+        const dec = (to % 1 === 0) ? 0 : 1;
+        const fmt = (n)=> n >= 1000 ? Math.round(n).toLocaleString('en-GB') : n.toFixed(dec);
+        function step(t){
+          const p = Math.min(1, (t-start)/dur);
+          const eased = 1 - Math.pow(1-p, 3);
+          el.textContent = fmt(to*eased) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.count').forEach(el=>countIO.observe(el));
+  </script>
 </body>
 </html>

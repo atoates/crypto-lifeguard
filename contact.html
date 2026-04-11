@@ -28,6 +28,8 @@
 </head>
 <body class="antialiased">
 
+  <div class="scroll-progress" id="progressBar"></div>
+
   <!-- SVG symbol definitions -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
@@ -63,17 +65,17 @@
     </defs>
   </svg>
 
-  <!-- Header (over dark hero) -->
-  <header class="absolute top-0 left-0 right-0 z-50">
-    <nav class="container mx-auto flex items-center justify-between py-5 px-6">
+  <!-- Header (sticky) -->
+  <header class="nav-root" id="navRoot">
+    <nav class="container mx-auto flex items-center justify-between py-4 px-6">
       <a href="index.html" class="flex items-center gap-3 text-white">
         <svg class="w-8 h-8 text-white"><use href="#logo-mark"/></svg>
-        <span class="font-bold tracking-tight text-[0.95rem] leading-none">
-          <span class="block text-white/70 text-[0.68rem] font-medium tracking-[0.18em] uppercase">Crypto</span>
-          <span class="block text-white uppercase tracking-wider">Lifeguard</span>
+        <span class="font-bold tracking-tight leading-none">
+          <span class="block text-white/70 text-[0.65rem] font-medium tracking-[0.2em] uppercase">Crypto</span>
+          <span class="block text-white uppercase tracking-[0.14em] text-[0.95rem]">Lifeguard</span>
         </span>
       </a>
-      <ul class="hidden md:flex items-center space-x-8">
+      <ul class="hidden md:flex items-center gap-8">
         <li><a href="index.html#features" class="nav-link">Features</a></li>
         <li><a href="index.html#how-it-works" class="nav-link">How it works</a></li>
         <li><a href="index.html#pricing" class="nav-link">Pricing</a></li>
@@ -87,11 +89,13 @@
 
   <!-- HERO -->
   <section class="hero hero-compact">
-    <div class="relative z-10 container mx-auto px-6 flex flex-col justify-center min-h-[55vh] pt-32 pb-16">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="relative z-10 container mx-auto px-6 flex flex-col justify-center min-h-[62vh] pt-32 pb-16">
       <div class="max-w-3xl">
         <span class="eyebrow eyebrow-light">Get in touch</span>
-        <h1 class="mt-4 text-4xl md:text-6xl font-bold text-white leading-[1.05] tracking-tight">Contact Crypto Lifeguard.</h1>
-        <p class="mt-5 text-lg md:text-xl text-clg-blue20 max-w-2xl leading-relaxed">
+        <h1 class="mt-4 display text-white">Contact <span class="grad-text-light">Crypto Lifeguard.</span></h1>
+        <p class="mt-6 text-lg md:text-xl text-clg-blue20 max-w-2xl leading-relaxed">
           Questions, partnerships, press, or just saying hello. We'll get back to you as soon as we can.
         </p>
       </div>
@@ -99,10 +103,10 @@
   </section>
 
   <!-- MAIN -->
-  <main class="py-20 bg-white">
+  <main class="py-24 bg-white">
     <div class="container mx-auto px-6">
       <div class="grid lg:grid-cols-3 gap-8 items-start">
-        <aside class="lg:col-span-1 bg-white border border-clg-grey10 rounded-2xl p-8 lift">
+        <aside class="lg:col-span-1 bento-item reveal">
           <span class="eyebrow">We're here to help</span>
           <h2 class="mt-3 text-2xl font-bold text-clg-black mb-3">Reach the team</h2>
           <p class="text-clg-grey50 mb-7 leading-relaxed">Whether you're an everyday holder, an exchange, or a project team, we'd love to hear from you.</p>
@@ -136,9 +140,9 @@
           </div>
         </aside>
 
-        <section class="lg:col-span-2 bg-white border border-clg-grey10 rounded-2xl p-8 md:p-10 lift">
+        <section class="lg:col-span-2 bento-item reveal delay-2 !p-8 md:!p-10">
           <span class="eyebrow">Message</span>
-          <h2 class="mt-3 text-3xl font-bold text-clg-black mb-2">Send us a message</h2>
+          <h2 class="mt-4 text-3xl md:text-4xl font-bold text-clg-black mb-2">Send us a <span class="grad-text">message.</span></h2>
           <p class="text-clg-grey50 mb-8">We typically reply within 1 to 2 business days.</p>
 
           <form class="space-y-6" onsubmit="event.preventDefault(); handleSubmit(this);">
@@ -220,6 +224,18 @@
   <script>
     function handleSubmit(form){ const sent=document.getElementById('sent'); if(sent) sent.classList.remove('hidden'); form.reset(); }
     document.getElementById('year').textContent = new Date().getFullYear();
+    const bar = document.getElementById('progressBar');
+    const nav = document.getElementById('navRoot');
+    function onScroll(){
+      const h = document.documentElement;
+      const scrolled = h.scrollTop / Math.max(1,(h.scrollHeight - h.clientHeight));
+      bar.style.width = (scrolled*100).toFixed(2) + '%';
+      if (h.scrollTop > 24) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+    }
+    document.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+    const io = new IntersectionObserver((es)=>{ for(const e of es){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } } }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   </script>
 </body>
 </html>
