@@ -1,0 +1,127 @@
+/* Crypto Lifeguard Brand Stylesheet
+   Based on CLG Brand Guidelines v02.26 */
+
+:root{
+  --clg-black:#14202E;
+  --clg-grey100:#1E2E3D;
+  --clg-grey50:#6D7A8A;
+  --clg-grey10:#E1E8F0;
+  --clg-blue:#1C4E7F;
+  --clg-blue20:#C4D3EB;
+  --clg-green:#3BB4AD;
+  --clg-green30:#C4E9E6;
+  --clg-red:#B72B29;
+}
+
+html{ scroll-behavior:smooth; }
+body{
+  font-family:'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  color:var(--clg-black);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Brand gradients */
+.grad-deep-blue{ background:linear-gradient(160deg, #14202E 0%, #14202E 35%, #1C4E7F 100%); }
+.grad-metal{ background:linear-gradient(160deg, #14202E 0%, #6D7A8A 100%); }
+.grad-white-glow{ background:linear-gradient(180deg, #FFFFFF 0%, #E1E8F0 100%); }
+
+/* Lifebuoy pattern background */
+.pattern-bg{
+  background-color:#14202E;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 1px, transparent 1.5px),
+    linear-gradient(160deg, #14202E 0%, #14202E 40%, #1C4E7F 100%);
+  background-size: 48px 48px, 100% 100%;
+}
+
+/* Hero */
+.hero{
+  position:relative;
+  min-height: 92vh;
+  color:#fff;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 75% 30%, rgba(28,78,127,0.55) 0%, rgba(20,32,46,0) 60%),
+    linear-gradient(160deg, #14202E 0%, #14202E 35%, #1C4E7F 100%);
+  z-index:0;
+}
+.hero-compact{ min-height: 55vh; }
+.hero-pattern{
+  position:absolute; inset:0; z-index:1; opacity:0.18; pointer-events:none;
+}
+
+/* Card hover lift */
+.lift{ transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.lift:hover{ transform: translateY(-4px); box-shadow:0 18px 40px rgba(20,32,46,0.12); border-color:#1C4E7F; }
+
+/* Buttons */
+.btn-primary{
+  background:#1C4E7F; color:#fff; padding:.85rem 1.6rem; border-radius:999px;
+  font-weight:700; letter-spacing:.01em;
+  transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
+  display:inline-flex; align-items:center; gap:.5rem;
+}
+.btn-primary:hover{ background:#14202E; transform:translateY(-1px); box-shadow:0 10px 26px rgba(20,32,46,0.25); }
+
+.btn-secondary{
+  background:transparent; color:#fff; padding:.85rem 1.6rem; border-radius:999px;
+  font-weight:700; border:1.5px solid rgba(255,255,255,0.7);
+  transition:all .2s ease;
+  display:inline-flex; align-items:center; gap:.5rem;
+}
+.btn-secondary:hover{ background:#fff; color:#14202E; border-color:#fff; }
+
+.btn-ghost{
+  background:#fff; color:#14202E; padding:.85rem 1.6rem; border-radius:999px;
+  font-weight:700; border:1.5px solid #E1E8F0;
+  transition:all .2s ease;
+  display:inline-flex; align-items:center; gap:.5rem;
+}
+.btn-ghost:hover{ border-color:#1C4E7F; color:#1C4E7F; }
+
+/* Eyebrow label */
+.eyebrow{
+  display:inline-block; text-transform:uppercase; letter-spacing:.14em;
+  font-size:.72rem; font-weight:500; color:#6D7A8A;
+}
+.eyebrow-light{ color:#C4D3EB; }
+
+/* Tags and chips */
+.tag{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.3rem .75rem; border-radius:999px;
+  background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
+  color:#fff; font-size:.78rem; font-weight:500; backdrop-filter:blur(6px);
+}
+.chip{
+  display:inline-flex; align-items:center; gap:.35rem;
+  padding:.25rem .65rem; border-radius:999px;
+  background:#E1E8F0; color:#1C4E7F; font-weight:700; font-size:.72rem;
+  text-transform:uppercase; letter-spacing:.08em;
+}
+
+/* Typography tuning */
+h1,h2,h3,h4{ letter-spacing:-0.01em; }
+
+/* Feature icon square */
+.feature-icon{
+  width:56px; height:56px; border-radius:14px;
+  background:#E1E8F0; color:#1C4E7F;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:1.25rem;
+}
+.feature-icon svg{ width:28px; height:28px; }
+
+/* Details expander chevron */
+details[open] summary .chev{ transform:rotate(180deg); }
+summary .chev{ transition:transform .2s ease; }
+
+/* Nav links (on dark hero) */
+.nav-link{ color:#C4D3EB; font-weight:500; font-size:.9rem; transition:color .15s ease; }
+.nav-link:hover{ color:#fff; }
+.nav-link-dark{ color:#6D7A8A; font-weight:500; font-size:.9rem; transition:color .15s ease; }
+.nav-link-dark:hover{ color:#14202E; }
