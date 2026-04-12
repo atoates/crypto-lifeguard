@@ -24,7 +24,11 @@ body{
   background:#fff;
   overflow-x:hidden;
   max-width:100%;
+  /* Belt-and-braces: Safari sometimes ignores html overflow-x on scroll */
+  position:relative;
 }
+/* Ensure no section stretches the page width */
+section, header, footer{ max-width:100%; overflow-x:hidden; }
 img, svg, video{ max-width:100%; height:auto; }
 
 ::selection{ background:#1C4E7F; color:#fff; }
@@ -325,7 +329,16 @@ details{ transition: border-color .25s ease; }
 .nav-link-dark:hover{ color:#14202E; }
 
 /* ---------- Marquee ---------- */
-.marquee{ overflow:hidden; position:relative; }
+.marquee{
+  overflow:hidden;
+  overflow-x:clip; /* no scroll container on x-axis */
+  position:relative;
+  contain: layout paint; /* isolates layout + clips paint to border-box */
+  /* clip-path is the most reliable Safari clip — takes precedence over overflow */
+  clip-path: inset(0 0 0 0);
+  transform: translateZ(0); /* GPU compositing layer prevents Safari page-width expansion */
+  max-width:100%;
+}
 .marquee::before, .marquee::after{
   content:""; position:absolute; top:0; bottom:0; width:120px; z-index:2; pointer-events:none;
 }
