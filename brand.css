@@ -296,7 +296,8 @@ h1,h2,h3,h4{ letter-spacing:-0.018em; overflow-wrap:break-word; }
 .display{
   font-size: clamp(2.25rem, 4.5vw + 1rem, 6.8rem);
   line-height:1.02; letter-spacing:-.03em; font-weight:700;
-  overflow-wrap:break-word; hyphens:auto;
+  overflow-wrap:break-word; hyphens:none;
+  word-break:normal;
 }
 
 /* ---------- Feature icon ---------- */
@@ -471,7 +472,7 @@ details{ transition: border-color .25s ease; }
   .nav-root nav{ padding-top:.9rem; padding-bottom:.9rem; }
 }
 @media (max-width: 640px){
-  .display{ font-size: clamp(1.9rem, 8.5vw, 2.6rem); }
+  .display{ font-size: clamp(1.9rem, 8.5vw, 2.6rem); hyphens:none; word-break:normal; }
   .bento-item{ padding:20px; }
   .btn-primary, .btn-secondary, .btn-ghost{ padding:.8rem 1.3rem; font-size:.92rem; }
   .stat-row{ gap:.8rem 1rem; }
