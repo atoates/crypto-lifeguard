@@ -9,22 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
-          colors: {
-            clg: {
-              black: '#14202E', grey100: '#1E2E3D', grey50: '#6D7A8A', grey10: '#E1E8F0',
-              blue: '#1C4E7F', blue20: '#C4D3EB', green: '#3BB4AD', green30: '#C4E9E6', red: '#B72B29'
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="tailwind.min.css">
   <link rel="stylesheet" href="brand.css">
 </head>
 <body class="antialiased">
@@ -69,8 +54,43 @@
         <li><a href="index.html#beta" class="btn-primary !py-2 !px-5 text-sm">Join the beta</a></li>
       </ul>
     </nav>
+      <button class="hamburger md:hidden" id="navToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
   </header>
 
+
+  <!-- ===== MOBILE NAV DRAWER ===== -->
+  <div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <div class="mobile-nav-backdrop" id="navBackdrop"></div>
+    <div class="mobile-nav-panel" role="document">
+      <!-- Header row -->
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-2.5">
+          <svg class="w-7 h-7 text-white" aria-hidden="true"><use href="#logo-mark"/></svg>
+          <span class="font-bold text-white tracking-tight leading-none text-sm uppercase tracking-[0.1em]">Lifeguard</span>
+        </div>
+        <button id="navClose" class="w-9 h-9 rounded-xl flex items-center justify-center bg-white/8 border border-white/12 text-white/70 hover:text-white hover:bg-white/14 transition" aria-label="Close menu">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <!-- Nav links -->
+      <nav class="flex flex-col gap-1 flex-1">
+        <a href="index.html#features" class="mobile-nav-link">Features</a>
+        <a href="index.html#how-it-works" class="mobile-nav-link">How it works</a>
+        <a href="index.html#sentinel" class="mobile-nav-link" style="color:#3BB4AD;">Sentinel AI</a>
+        <a href="index.html#pricing" class="mobile-nav-link">Pricing</a>
+        <a href="index.html#faq" class="mobile-nav-link">FAQ</a>
+        <a href="roadmap.html" class="mobile-nav-link">Roadmap</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+      </nav>
+      <!-- CTA -->
+      <div class="pt-6 border-t border-white/10 mt-4">
+        <a href="index.html#beta" class="btn-primary w-full justify-center">Join the beta</a>
+      </div>
+    </div>
+  </div>
+  <!-- ===== END MOBILE NAV ===== -->
   <!-- HERO -->
   <section class="hero hero-compact">
     <div class="blob blob-a"></div>
@@ -249,6 +269,36 @@
     onScroll();
     const io = new IntersectionObserver((es)=>{ for(const e of es){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } } }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // --- Mobile navigation ---
+    (function(){
+      var toggle = document.getElementById('navToggle');
+      var drawer = document.getElementById('mobileNav');
+      var backdrop = document.getElementById('navBackdrop');
+      var closeBtn = document.getElementById('navClose');
+      if(!toggle || !drawer) return;
+
+      function openNav(){
+        drawer.classList.add('open');
+        toggle.classList.add('open');
+        toggle.setAttribute('aria-expanded','true');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeNav(){
+        drawer.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+        document.body.style.overflow = '';
+      }
+      toggle.addEventListener('click', function(){
+        drawer.classList.contains('open') ? closeNav() : openNav();
+      });
+      backdrop.addEventListener('click', closeNav);
+      closeBtn.addEventListener('click', closeNav);
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && drawer.classList.contains('open')) closeNav();
+      });
+    })();
   </script>
 </body>
 </html>
